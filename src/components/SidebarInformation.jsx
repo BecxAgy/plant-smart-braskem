@@ -7,17 +7,12 @@ import {
     Input,
 } from '@material-tailwind/react'
 import {
-    PresentationChartBarIcon,
-    ShoppingBagIcon,
-    UserCircleIcon,
-    Cog6ToothIcon,
-    InboxIcon,
-    PowerIcon,
     QuestionMarkCircleIcon,
     MagnifyingGlassIcon,
 } from '@heroicons/react/24/solid'
+import InterventionItemList from './InterventionItemList'
 
-export function DefaultSidebar() {
+export function DefaultSidebar({ markerData }) {
     return (
         <Card className='bg-gray-100'>
             <div className='mb-2 p-4'>
@@ -32,11 +27,11 @@ export function DefaultSidebar() {
                 </div>
             </div>
             <List>
-                <ListItem>
-                    <ListItemPrefix>
-                        <QuestionMarkCircleIcon className='h-6 w-5' />
-                    </ListItemPrefix>
-                </ListItem>
+                {markerData &&
+                    markerData.map((intervention, i) => (
+                        <InterventionItemList intervention={intervention} />
+                    ))}
+                <InterventionItemList />
             </List>
         </Card>
     )
