@@ -5,15 +5,11 @@ import {
     Progress,
     Typography,
 } from '@material-tailwind/react'
-import {
-    CircleStackIcon,
-    QuestionMarkCircleIcon,
-} from '@heroicons/react/24/solid'
 
 function InterventionItemList({ intervention }) {
     return (
         intervention && (
-            <div className='py-3 px-1'>
+            <div className='py-3 mt-5'>
                 <ListItem>
                     <ListItemPrefix></ListItemPrefix>
                     <div className='w-full'>
@@ -22,9 +18,8 @@ function InterventionItemList({ intervention }) {
                         </Typography>
                         <div className='mt-1'>
                             <Progress
-                                value={25}
+                                value={intervention.avançoAtual}
                                 size='sm'
-                                color='red'
                                 label='atual'
                             />
                         </div>

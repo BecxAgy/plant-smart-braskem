@@ -11,28 +11,32 @@ import {
     MagnifyingGlassIcon,
 } from '@heroicons/react/24/solid'
 import InterventionItemList from './InterventionItemList'
+import logoBraskem from '../images/logoBraskem.png'
 
 export function DefaultSidebar({ markerData }) {
     return (
-        <Card className='bg-gray-100'>
-            <div className='mb-2 p-4'>
-                <Typography variant='h5' color='blue-gray'>
-                    Planta QI
-                </Typography>
-                <div className='mt-3'>
+        <div className='z-10 p-4 rounded-lg absolute top-0 left-0 overflow-y-auto w-1/4 '>
+            <div className='bg-white rounded-2xl p-10'>
+                <img src={logoBraskem} width={180} alt='' />
+                <div className='w-1/2'>
                     <Input
-                        icon={<MagnifyingGlassIcon className='h-5 w-5' />}
-                        label='Search'
+                        className='border-none bg-blue-gray-900 rounded-xl '
+                        type='search'
+                        color='white'
+                        label='Tag Name'
+                        icon={<MagnifyingGlassIcon></MagnifyingGlassIcon>}
                     />
+                    <List>
+                        {markerData &&
+                            markerData.map(marker => (
+                                <InterventionItemList
+                                    key={marker.id}
+                                    intervention={marker}
+                                />
+                            ))}
+                    </List>
                 </div>
             </div>
-            <List>
-                {markerData &&
-                    markerData.map((intervention, i) => (
-                        <InterventionItemList intervention={intervention} />
-                    ))}
-                <InterventionItemList />
-            </List>
-        </Card>
+        </div>
     )
 }

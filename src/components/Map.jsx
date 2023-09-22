@@ -1,44 +1,46 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
+import ReactMapGl, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import mapboxgl from 'mapbox-gl'
+import { DefaultSidebar } from './SidebarInformation'
+import { HomeIcon } from '@heroicons/react/24/solid'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
 function Map({ markerData }) {
-    // Lista de coordenadas de marcadores
-
-    useEffect(() => {
-        // Inicializar o mapa do Mapbox GL JS
-        mapboxgl.accessToken = TOKEN
-        const map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/rebecaaguiar/clmoulsa604qe01qb3r6k01sj',
-            center: [-38.320841784940825, -12.657897384062684],
-            zoom: 10,
-            pitch: 35,
-            bearing: 140,
-        })
-        console.log(markerData)
-        // Adicionar marcadores ao mapa
-        markerData.forEach(markerInfo => {
-            new mapboxgl.Marker()
-                .setLngLat(markerInfo.lngLat)
-                .setPopup(
-                    new mapboxgl.Popup().setHTML(`<h3>${markerInfo.tag}</h3>`),
-                )
-                .addTo(map)
-        })
-
-        return () => {
-            // Limpar recursos quando o componente for desmontado
-            map.remove()
-        }
-    }, [])
+    const [viewState, setViewState] = React.useState({
+        longitude: -38.320841784940825,
+        latitude: -12.657897384062684,
+        zoom: 17,
+        bearing: 170,
+        pitch: 30,
+    })
 
     return (
-        <div>
-            {/* Div para o mapa do Mapbox GL JS */}
-            <div id='map' style={{ width: '100vw', height: '100vh' }}></div>
+        <div className='z-1'>
+            <ReactMapGl
+                {...viewState}
+                mapboxAccessToken={TOKEN}
+                style={{ width: '100vw', height: '100vh' }}
+                mapStyle={
+                    'mapbox://styles/rebecaaguiar/clmoulsa604qe01qb3r6k01sj'
+                }
+            >
+                <div className='w-1/3 z-10'>
+                    <DefaultSidebar markerData={markerData} S />
+                </div>
+
+                {markerData &&
+                    markerData.map(marker => (
+                        <Marker
+                            longitude={marker.lngLat[0]}
+                            latitude={marker.lngLat[1]}
+                            anchor='bottom'
+                            onClick={() => {
+                                console.log('cliquei')
+                            }}
+                        ></Marker>
+                    ))}
+            </ReactMapGl>
         </div>
     )
 }

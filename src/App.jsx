@@ -118,13 +118,11 @@ function App() {
         },
     ]
     return (
-        <div className='flex h-screen overflow-hidden'>
+        <div className='flex h-screen overflow-hidden '>
             {/* Barra lateral que ocupa 30% da tela */}
-            <div className='w-1/4 bg-gray-300 p-4 max-h-screen overflow-y-auto'>
-                <DefaultSidebar markerData={markerData} />
-            </div>
+
             {/* Mapa que ocupa 70% da tela */}
-            <div className='w-3/4 max-h-screen overflow-hidden'>
+            <div className=' max-h-screen overflow-hidden'>
                 <Map markerData={markerData} />
             </div>
         </div>
