@@ -15,27 +15,35 @@ import logoBraskem from '../images/logoBraskem.png'
 
 export function DefaultSidebar({ markerData }) {
     return (
-        <div className='z-10 p-4 rounded-lg absolute top-0 left-0 overflow-y-auto w-1/4 '>
-            <div className='bg-white rounded-2xl p-10'>
-                <img src={logoBraskem} width={180} alt='' />
-                <div className='w-1/2'>
+        <div
+            className='p-4 rounded-lg absolute top-0 left-0 w-1/4'
+            style={{ height: '90vh' }}
+        >
+            <div className='bg-white rounded-2xl p-10 '>
+                <div>
+                    <img src={logoBraskem} width={180} alt='' />
+
                     <Input
                         className='border-none bg-blue-gray-900 rounded-xl '
                         type='search'
-                        color='white'
+                        color='blue'
                         label='Tag Name'
                         icon={<MagnifyingGlassIcon></MagnifyingGlassIcon>}
                     />
-                    <List>
-                        {markerData &&
-                            markerData.map(marker => (
-                                <InterventionItemList
-                                    key={marker.id}
-                                    intervention={marker}
-                                />
-                            ))}
-                    </List>
                 </div>
+
+                <List
+                    className='scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent overflow-y-auto mt-5'
+                    style={{ maxHeight: '80vh' }}
+                >
+                    {markerData &&
+                        markerData.map(marker => (
+                            <InterventionItemList
+                                key={marker.id}
+                                intervention={marker}
+                            />
+                        ))}
+                </List>
             </div>
         </div>
     )

@@ -26,7 +26,7 @@ function Map({ markerData }) {
                 }
             >
                 <div className='w-1/3 z-10'>
-                    <DefaultSidebar markerData={markerData} S />
+                    <DefaultSidebar markerData={markerData} />
                 </div>
 
                 {markerData &&

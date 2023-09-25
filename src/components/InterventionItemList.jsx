@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+    Avatar,
     ListItem,
     ListItemPrefix,
     Progress,
@@ -9,9 +10,11 @@ import {
 function InterventionItemList({ intervention }) {
     return (
         intervention && (
-            <div className='py-3 mt-5'>
+            <div className='py-4'>
                 <ListItem>
-                    <ListItemPrefix></ListItemPrefix>
+                    <ListItemPrefix>
+                        <Avatar />
+                    </ListItemPrefix>
                     <div className='w-full'>
                         <Typography className='font-bold' color='blue-gray'>
                             {intervention.tag}
