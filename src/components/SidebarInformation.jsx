@@ -33,8 +33,8 @@ export function DefaultSidebar({ markerData }) {
                 </div>
 
                 <List
-                    className='scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent overflow-y-auto my-5'
-                    style={{ maxHeight: '80vh' }}
+                    className='scrollbar-thin  scrollbar-thumb-blue-300 scrollbar-track-transparent overflow-y-auto my-5'
+                    style={{ maxHeight: '70vh' }}
                 >
                     {markerData &&
                         markerData.map(marker => (

@@ -3,10 +3,12 @@ import ReactMapGl, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
 import { HomeIcon } from '@heroicons/react/24/solid'
+import { useSelector } from 'react-redux'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
 function Map({ markerData }) {
+    const { interventions, loading } = useSelector(state => state.intervention)
     const [viewState, setViewState] = React.useState({
         longitude: -38.320841784940825,
         latitude: -12.657897384062684,
@@ -15,6 +17,8 @@ function Map({ markerData }) {
         pitch: 30,
     })
 
+    const [isSelected, setSelected] = useState(false)
+    console.log()
     return (
         <div className='z-1'>
             <ReactMapGl
@@ -26,18 +30,17 @@ function Map({ markerData }) {
                 }
             >
                 <div className='w-1/3 z-10'>
-                    <DefaultSidebar markerData={markerData} />
+                    <DefaultSidebar markerData={interventions} />
                 </div>
 
-                {markerData &&
-                    markerData.map(marker => (
+                {interventions &&
+                    interventions.map(marker => (
                         <Marker
-                            longitude={marker.lngLat[0]}
-                            latitude={marker.lngLat[1]}
+                            color={marker.alerta}
+                            longitude={marker.longitude}
+                            latitude={marker.latitude}
                             anchor='bottom'
-                            onClick={() => {
-                                console.log('cliquei')
-                            }}
+                            onClick={() => {}}
                         ></Marker>
                     ))}
             </ReactMapGl>

@@ -13,7 +13,7 @@ function InterventionItemList({ intervention }) {
             <div className='py-4'>
                 <ListItem>
                     <ListItemPrefix>
-                        <Avatar />
+                        <Avatar src={intervention.responsavel} />
                     </ListItemPrefix>
                     <div className='w-full'>
                         <Typography className='font-bold' color='blue-gray'>
@@ -21,9 +21,9 @@ function InterventionItemList({ intervention }) {
                         </Typography>
                         <div className='mt-1'>
                             <Progress
-                                value={intervention.avançoAtual}
-                                size='sm'
-                                label='atual'
+                                value={intervention.avanco_atual}
+                                size='md'
+                                color='blue'
                             />
                         </div>
                     </div>
