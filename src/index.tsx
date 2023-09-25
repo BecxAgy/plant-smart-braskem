@@ -5,13 +5,17 @@ import App from './App.jsx'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import reportWebVitals from './reportWebVitals'
 import { ThemeProvider } from '@material-tailwind/react'
+import { Provider } from 'react-redux'
+import { store } from './store.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <React.StrictMode>
-        <ThemeProvider>
-            <App />
-        </ThemeProvider>
+        <Provider store={store}>
+            <ThemeProvider>
+                <App />
+            </ThemeProvider>
+        </Provider>
     </React.StrictMode>,
 )
 

@@ -15,11 +15,11 @@ import logoBraskem from '../images/logoBraskem.png'
 
 export function DefaultSidebar({ markerData }) {
     return (
-        <div
-            className='p-4 rounded-lg absolute top-0 left-0 w-1/4'
-            style={{ height: '90vh' }}
-        >
-            <div className='bg-white rounded-2xl p-10 '>
+        <div className='p-5 rounded-lg absolute top-0 left-0 w-1/4'>
+            <div
+                className='bg-white rounded-2xl p-10 '
+                style={{ height: '95vh' }}
+            >
                 <div>
                     <img src={logoBraskem} width={180} alt='' />
 
@@ -33,7 +33,7 @@ export function DefaultSidebar({ markerData }) {
                 </div>
 
                 <List
-                    className='scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent overflow-y-auto mt-5'
+                    className='scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent overflow-y-auto my-5'
                     style={{ maxHeight: '80vh' }}
                 >
                     {markerData &&
