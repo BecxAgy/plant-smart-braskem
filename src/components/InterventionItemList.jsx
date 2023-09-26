@@ -23,7 +23,7 @@ function InterventionItemList({ intervention }) {
                             <Progress
                                 value={intervention.avanco_atual}
                                 size='md'
-                                color='blue'
+                                
                             />
                         </div>
                     </div>

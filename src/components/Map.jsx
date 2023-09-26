@@ -8,16 +8,17 @@ import DialogDefault from './ModalIntervention'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
-function Map({ markerData }) {
+function Map() {
     const { interventions, loading } = useSelector(state => state.intervention)
     const [open, setOpen] = React.useState(false)
+    const [intervention, setIntervention] = useState(null);
     const [viewState, setViewState] = React.useState({
         longitude: -38.320841784940825,
         latitude: -12.657897384062684,
         zoom: 17,
         bearing: 170,
         pitch: 30,
-    })
+    }) 
     const handleOpen = () => setOpen(!open)
 
     return (
@@ -30,10 +31,17 @@ function Map({ markerData }) {
                     'mapbox://styles/rebecaaguiar/clmoulsa604qe01qb3r6k01sj'
                 }
             >
-                <div className='w-1/3 z-10'>
-                    <DefaultSidebar markerData={interventions} />
-                    <DialogDefault handleOpen={handleOpen} open={open} />
-                </div>
+                <div className='w-full sm:w-1/2 z-10'>
+    <div className="sm:flex p-10">
+        <div className="sm:w-2/4">
+            <DefaultSidebar markerData={interventions} />
+        </div>
+        <div className="sm:w-1/3 px-5">
+            <DialogDefault setopen={setOpen} open={open} intervention={intervention} />
+        </div>
+    </div>
+</div>
+
 
                 {interventions &&
                     interventions.map(marker => (
@@ -44,6 +52,7 @@ function Map({ markerData }) {
                             anchor='bottom'
                             onClick={() => {
                                 handleOpen()
+                                setIntervention(marker);
                             }}
                         ></Marker>
                     ))}

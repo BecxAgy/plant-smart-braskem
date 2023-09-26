@@ -18,7 +18,7 @@ export function DefaultSidebar({ markerData }) {
         <div className='p-5 rounded-lg absolute top-0 left-0 w-1/4'>
             <div
                 className='bg-white rounded-2xl p-10 '
-                style={{ height: '95vh' }}
+                style={{ height: '95vh', minWidth: '25rem'}}
             >
                 <div>
                     <img src={logoBraskem} width={180} alt='' />
