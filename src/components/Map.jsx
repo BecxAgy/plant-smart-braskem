@@ -13,7 +13,7 @@ import {
     FaArrowDown,
     FaHandPointer,
 } from 'react-icons/fa'
-import { ZoomControl } from 'react-leaflet'
+import {ImArrowDown} from 'react-icons/im';
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
@@ -71,11 +71,12 @@ function Map() {
                                 handleOpen()
                                 setIntervention(marker)
                             }}
+                            
                         >
                             {open && marker === intervention ? (
-                                <FaArrowDown
+                                <ImArrowDown
                                     color='yellow'
-                                    className='w-5 h-5'
+                                    className='w-3 h-3 hover:w-6 '
                                 />
                             ) : (
                                 <></>

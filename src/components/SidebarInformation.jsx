@@ -1,4 +1,4 @@
-import { Input, List } from '@material-tailwind/react';
+import { Input, List , Chip} from '@material-tailwind/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import InterventionItemList from './InterventionItemList';
 import logoBraskem from '../images/logoBraskem.png';
@@ -9,7 +9,10 @@ import SelectProject from './SelectProject';
 export function DefaultSidebar({ markerData, open, setOpen, setIntervention }) {
   const [search, setSearch] = useState('');
   const { interventions, loading } = useSelector((state) => state.intervention);
- 
+  const grayAlerts = interventions.filter(interv => interv.alerta === 'gray').length;
+  const redAlerts = interventions.filter(interv => interv.alerta === 'red').length;
+  const greenAlerts = interventions.filter(interv => interv.alerta === 'green').length;    
+  const yellowAlerts = interventions.filter(interv => interv.alerta === 'yellow').length;
   const [selectedProject, setSelectedProject] = useState(""); // Estado para o projeto selecionado
 
   const interventionsFiltered = useMemo(() => {
@@ -30,11 +33,26 @@ export function DefaultSidebar({ markerData, open, setOpen, setIntervention }) {
     >
       <div
         className='bg-white rounded-2xl p-10 '
-        style={{ height: '95vh', minWidth: '25rem' }}
+        style={{ height: '95vh', minWidth:'17rem'}}
       >
         <div>
           <img src={logoBraskem} width={180} alt='' />
           <div className='w-32 mb-4 '>
+          <div id="countAlertas" className="flex justify-between space-x-4 mb-4">
+  
+   <Chip value={grayAlerts} variant="ghost" />
+  
+  
+  <Chip value={redAlerts} variant="ghost" color='red' />
+  
+ 
+  <Chip value={greenAlerts} variant="ghost"  color='green'/>
+  
+  
+  <Chip value={yellowAlerts} variant="ghost" color='yellow'/>
+ 
+</div>
+
             <SelectProject
               selectedProject={selectedProject}
               setSelectedProject={setSelectedProject}
