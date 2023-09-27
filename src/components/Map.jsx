@@ -2,31 +2,25 @@ import React, { useState } from 'react'
 import ReactMapGl, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
-import { HomeIcon } from '@heroicons/react/24/solid'
 import { useSelector } from 'react-redux'
 import DialogDefault from './ModalIntervention'
 import mapPoint from '../images/MarkerMap.png'
-import { IconButton } from '@material-tailwind/react'
-import {
-    Fa500Px,
-    FaAirFreshener,
-    FaArrowDown,
-    FaHandPointer,
-} from 'react-icons/fa'
-import {ImArrowDown} from 'react-icons/im';
-
+import { ImArrowDown } from 'react-icons/im'
+import pointGreen from '../images/Circle_Green.png'
+import pointGray from '../images/Circle_Gray.png'
+import pointRed from '../images/Circle_Red.png'
+import pointYellow from '../images/Circle_Yellow.png'
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
 function Map() {
-    const { interventions, loading } = useSelector(state => state.intervention)
+    const { interventions } = useSelector(state => state.intervention)
     const [open, setOpen] = React.useState(false)
     const [intervention, setIntervention] = useState(null)
     const [viewState, setViewState] = React.useState({
         longitude: -38.31955,
         latitude: -12.65735,
         zoom: 17.4,
-        maxZoom: 17.4,
-        minZoom: 13,
+
         pitch: 49,
         bearing: 144,
     })
@@ -71,19 +65,27 @@ function Map() {
                                 handleOpen()
                                 setIntervention(marker)
                             }}
-                            
                         >
                             {open && marker === intervention ? (
                                 <ImArrowDown
                                     color='yellow'
-                                    className='w-3 h-3 hover:w-6 '
+                                    className='w-5 h-5  '
                                 />
                             ) : (
                                 <></>
-                            )}{' '}
+                            )}
+
                             <img
-                                className='w-3 h-3 hover:h-7 hover:w-7 cursor-pointer'
-                                src={mapPoint}
+                                className='w-5 my-2 h-5 hover:h-7 hover:w-8 hover:my-3  cursor-pointer'
+                                src={
+                                    marker.alerta === 'green'
+                                        ? pointGreen
+                                        : marker.alerta === 'gray'
+                                        ? pointGray
+                                        : marker.alerta === 'red'
+                                        ? pointRed
+                                        : pointYellow
+                                }
                             />
                         </Marker>
                     ))}
