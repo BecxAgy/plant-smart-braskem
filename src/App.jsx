@@ -3,6 +3,7 @@ import Map from './components/Map'
 import { DefaultSidebar } from './components/SidebarInformation'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllInterventions } from './slice/interventionSlice'
+import { getAllProjects } from './slice/projectSlice'
 
 function App() {
     const dispatch = useDispatch()
@@ -10,6 +11,7 @@ function App() {
 
     useEffect(() => {
         dispatch(getAllInterventions())
+       
     }, [dispatch])
 
     return (

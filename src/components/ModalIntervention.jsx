@@ -6,6 +6,7 @@ import {
     IconButton,
     Tooltip,
     Typography,
+    Progress
 } from '@material-tailwind/react'
 import {
     FaRegTimesCircle,
@@ -44,22 +45,16 @@ function DialogDefault({ setopen, open, intervention }) {
                         color='blue-gray'
                         className='font-medium'
                     >
-                        {intervention && intervention.tag} -{' '}
+                        {intervention && intervention.tag} - 
                         {intervention && intervention.PJ}
                     </Typography>
-                    <Typography
-                        color='blue-gray'
-                        className='flex items-center gap-1.5 font-bold'
-                    >
-                        {intervention && intervention.avanco_atual}
-                        <FaPercent />
-                    </Typography>
+                    
                 </div>
                 <Typography color='gray'>
                     {intervention && intervention.emperesa_montagem}
                 </Typography>
                 <Typography color='gray'>
-                    Inicio Real e Término:{' '}
+                  <Progress value={intervention && intervention.avanco_atual}/>
                     {intervention && intervention.inicio_real} -
                     {intervention && intervention.termino_real}
                 </Typography>
