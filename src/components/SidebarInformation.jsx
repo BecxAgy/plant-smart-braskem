@@ -1,45 +1,28 @@
-import { Input, List, Chip, Badge } from '@material-tailwind/react'
+import { Input, List } from '@material-tailwind/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import InterventionItemList from './InterventionItemList'
 import logoBraskem from '../images/logoBraskem.png'
 import { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import SelectProject from './SelectProject'
-import {
-    FaCheck,
-    FaCircle,
-    FaExclamationTriangle,
-    FaFire,
-    FaMapMarkedAlt,
-    FaVenusMars,
-} from 'react-icons/fa'
+import GroupColorFilter from './GroupColorFilter'
 
 export function DefaultSidebar({ markerData, open, setOpen, setIntervention }) {
     const [search, setSearch] = useState('')
     const { interventions, loading } = useSelector(state => state.intervention)
-    const grayAlerts = interventions.filter(
-        interv => interv.alerta === 'gray',
-    ).length
-    const redAlerts = interventions.filter(
-        interv => interv.alerta === 'red',
-    ).length
-    const greenAlerts = interventions.filter(
-        interv => interv.alerta === 'green',
-    ).length
-    const yellowAlerts = interventions.filter(
-        interv => interv.alerta === 'yellow',
-    ).length
-    const [selectedProject, setSelectedProject] = useState('') // Estado para o projeto selecionado
 
+    const [selectedProject, setSelectedProject] = useState('') // Estado para o projeto selecionado
+    const [selectedColor, setSelectedColor] = useState('')
     const interventionsFiltered = useMemo(() => {
         const lowerSearch = search.toLowerCase()
 
         return interventions.filter(
             interv =>
                 interv.tag.toLowerCase().includes(lowerSearch) &&
-                (selectedProject === '' || interv.PJ === selectedProject), // Filtro com base no projeto selecionado
+                (selectedProject === '' || interv.PJ === selectedProject) &&
+                (selectedColor === '' || selectedColor === interv.alerta), // Filtro com base no projeto selecionado
         )
-    }, [interventions, search, selectedProject])
+    }, [interventions, search, selectedProject, selectedColor])
 
     return (
         <div
@@ -54,35 +37,7 @@ export function DefaultSidebar({ markerData, open, setOpen, setIntervention }) {
                 <div>
                     <img src={logoBraskem} width={180} alt='' />
 
-                    <div className='flex grid-rows-4 justify-between  my-4'>
-                        <Badge color='gray' content={grayAlerts}>
-                            <Chip value={<FaCircle />} variant='ghost' />
-                        </Badge>
-
-                        <Badge color='red' content={redAlerts}>
-                            <Chip
-                                value={<FaFire />}
-                                variant='ghost'
-                                color='red'
-                            />
-                        </Badge>
-
-                        <Badge color='green' content={greenAlerts}>
-                            <Chip
-                                value={<FaCheck />}
-                                variant='ghost'
-                                color='green'
-                            />
-                        </Badge>
-
-                        <Badge color='yellow' content={yellowAlerts}>
-                            <Chip
-                                value={<FaExclamationTriangle />}
-                                variant='ghost'
-                                color='yellow'
-                            />
-                        </Badge>
-                    </div>
+                    <GroupColorFilter setSelectedColor={setSelectedColor} />
                     <div className='w-32 my-2'>
                         <SelectProject
                             selectedProject={selectedProject}

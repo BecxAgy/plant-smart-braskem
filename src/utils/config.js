@@ -1,4 +1,4 @@
-export const api = 'https://planta-inteligente-kempetro.onrender.com/api'
+export const api = 'http://plantsmart.kempetro.com.br/api'
 
 export const requestConfig = (method, data) => {
     let config
