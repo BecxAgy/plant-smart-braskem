@@ -1,0 +1,3 @@
+.mapboxgl-marker {
+    transform: none !important; /* Desabilita o transform */
+}

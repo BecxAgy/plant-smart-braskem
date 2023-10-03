@@ -11,7 +11,7 @@ import {
 } from 'react-icons/fa'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { AiOutlineMore } from 'react-icons/ai'
+import { LuFilterX } from 'react-icons/lu'
 
 function GroupColorFilter({ setSelectedColor, selectedColor }) {
     const { interventions, loading } = useSelector(state => state.intervention)
@@ -56,7 +56,7 @@ function GroupColorFilter({ setSelectedColor, selectedColor }) {
             </div>
 
             <div className='p-1' onClick={() => setSelectedColor('')}>
-                <AiOutlineMore className='w-5 h-5' />
+                <LuFilterX className='w-5 h-5' />
             </div>
         </div>
     )

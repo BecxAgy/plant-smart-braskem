@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import ReactMapGl, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
@@ -10,12 +10,27 @@ import pointGreen from '../images/Circle_Green.png'
 import pointGray from '../images/Circle_Gray.png'
 import pointRed from '../images/Circle_Red.png'
 import pointYellow from '../images/Circle_Yellow.png'
+
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
 function Map() {
     const { interventions } = useSelector(state => state.intervention)
     const [open, setOpen] = React.useState(false)
+    const [search, setSearch] = useState('')
     const [intervention, setIntervention] = useState(null)
+    const [selectedColor, setSelectedColor] = useState('')
+    const [selectedProject, setSelectedProject] = useState('') // Estado para o projeto selecionado
+    const interventionsFiltered = useMemo(() => {
+        const lowerSearch = search.toLowerCase()
+
+        return interventions.filter(
+            interv =>
+                interv.tag.toLowerCase().includes(lowerSearch) &&
+                (selectedProject === '' || interv.PJ === selectedProject) &&
+                (selectedColor === '' || selectedColor === interv.alerta), // Filtro com base no projeto selecionado
+        )
+    }, [interventions, search, selectedProject, selectedColor])
+
     const [viewState, setViewState] = React.useState({
         longitude: -38.31955,
         latitude: -12.65735,
@@ -40,10 +55,15 @@ function Map() {
                     <div className='sm:flex p-10'>
                         <div className='sm:w-2/4'>
                             <DefaultSidebar
-                                markerData={interventions}
+                                interventionsFiltered={interventionsFiltered}
                                 open={open}
                                 setOpen={setOpen}
                                 setIntervention={setIntervention}
+                                setSelectedColor={setSelectedColor}
+                                selectedProject={selectedProject}
+                                setSelectedProject={setSelectedProject}
+                                search={search}
+                                setSearch={setSearch}
                             />
                         </div>
                         <div className='sm:w-1/3 px-5'>
@@ -57,13 +77,15 @@ function Map() {
                 </div>
 
                 {interventions &&
-                    interventions.map(marker => (
+                    interventionsFiltered.map(marker => (
                         <Marker
+                            pitchAlignment='map'
+                            rotationAlignment='viewport'
                             longitude={marker.longitude}
                             latitude={marker.latitude}
                             onClick={() => {
-                                handleOpen()
                                 setIntervention(marker)
+                                handleOpen()
                             }}
                         >
                             {open && marker === intervention ? (
@@ -76,7 +98,8 @@ function Map() {
                             )}
 
                             <img
-                                className='w-5 my-2 h-5 hover:h-7 hover:w-8 hover:my-3  cursor-pointer'
+                                key={marker.id}
+                                className='w-5  h-5 hover:h-7 hover:w-8 cursor-pointer '
                                 src={
                                     marker.alerta === 'green'
                                         ? pointGreen

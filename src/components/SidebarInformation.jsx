@@ -7,23 +7,18 @@ import { useSelector } from 'react-redux'
 import SelectProject from './SelectProject'
 import GroupColorFilter from './GroupColorFilter'
 
-export function DefaultSidebar({ markerData, open, setOpen, setIntervention }) {
-    const [search, setSearch] = useState('')
-    const { interventions, loading } = useSelector(state => state.intervention)
-
-    const [selectedProject, setSelectedProject] = useState('') // Estado para o projeto selecionado
-    const [selectedColor, setSelectedColor] = useState('')
-    const interventionsFiltered = useMemo(() => {
-        const lowerSearch = search.toLowerCase()
-
-        return interventions.filter(
-            interv =>
-                interv.tag.toLowerCase().includes(lowerSearch) &&
-                (selectedProject === '' || interv.PJ === selectedProject) &&
-                (selectedColor === '' || selectedColor === interv.alerta), // Filtro com base no projeto selecionado
-        )
-    }, [interventions, search, selectedProject, selectedColor])
-
+export function DefaultSidebar({
+    open,
+    setOpen,
+    setIntervention,
+    setSelectedColor,
+    selectedProject,
+    setSelectedProject,
+    interventionsFiltered,
+    search,
+    setSearch,
+}) {
+    const { interventions } = useSelector(state => state.intervention)
     return (
         <div
             className={`p-5 rounded-lg absolute top-0 left-0 w-1/4 ${
@@ -63,7 +58,7 @@ export function DefaultSidebar({ markerData, open, setOpen, setIntervention }) {
                     className='scrollbar-thin  scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto my-5'
                     style={{ maxHeight: '60vh' }}
                 >
-                    {markerData &&
+                    {interventions &&
                         interventionsFiltered.map(marker => (
                             <InterventionItemList
                                 key={marker.id}
