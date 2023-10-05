@@ -27,7 +27,7 @@ export function DefaultSidebar({
         >
             <div
                 className='bg-white rounded-2xl p-10 '
-                style={{ height: '95vh', minWidth: '17rem' }}
+                style={{ height: '95vh', minWidth: '18rem' }}
             >
                 <div>
                     <img src={logoBraskem} width={180} alt='' />
@@ -56,7 +56,7 @@ export function DefaultSidebar({
 
                 <List
                     className='scrollbar-thin  scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto my-5'
-                    style={{ maxHeight: '60vh' }}
+                    style={{ maxHeight: '55vh' }}
                 >
                     {interventions &&
                         interventionsFiltered.map(marker => (

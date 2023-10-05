@@ -12,22 +12,15 @@ function InterventionItemList({ intervention, onClick }) {
         intervention && (
             <div className='py-4'>
                 <ListItem onClick={onClick}>
-                    <ListItemPrefix>
-                        <Avatar
-                            variant='rounded'
-                            src='https://static.vecteezy.com/system/resources/previews/020/017/552/original/location-icon-design-free-vector.jpg'
-                            size='lg'
-                        />
-                    </ListItemPrefix>
+                    <ListItemPrefix></ListItemPrefix>
                     <div className='w-full'>
                         <Typography className='font-bold' color='blue-gray'>
                             {intervention.tag}
                         </Typography>
-                        <Typography variant='small' color='blue-gray'>
-                            {intervention.emperesa_montagem}
-                        </Typography>
+
                         <div className=' w-1/2 mt-1'>
                             <Progress
+                                className='bg-gray-100'
                                 value={intervention.avanco_atual}
                                 size='md'
                             />

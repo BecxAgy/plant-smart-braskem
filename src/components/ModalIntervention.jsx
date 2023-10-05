@@ -18,25 +18,14 @@ function DialogDefault({ setopen, open, intervention }) {
             className={`w-full shadow-lg ${!open ? 'hidden' : ''}`}
             style={{ minWidth: '18rem', maxHeight: '90vh' }}
         >
-            <CardHeader floated={false} color='blue-gray'>
-                <div className=''>
-                    <img
-                        src={intervention && intervention.responsavel}
-                        alt='Responsavel'
-                    />
-                    <div className='to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 ' />
-                    <IconButton
-                        size='sm'
-                        color='red'
-                        variant='text'
-                        className='!absolute top-0 right-0 rounded-full'
-                        onClick={() => setopen(!open)}
-                    >
-                        <FaRegTimesCircle className='h-6 w-6' />{' '}
-                        {/* React icon */}
-                    </IconButton>
-                </div>
-            </CardHeader>
+            <IconButton
+                onClick={() => setopen(false)}
+                variant='text'
+                className='!absolute top-4 right-2'
+            >
+                <FaRegTimesCircle className='w-5 h-5' />
+            </IconButton>
+
             <CardBody>
                 <div className='mb-3 grid grid-rows-2 items-center justify-between'>
                     <Typography
@@ -124,6 +113,7 @@ function DialogDefault({ setopen, open, intervention }) {
                     <Tooltip content='3D'>
                         <a
                             href='https://autode.sk/4511oXF'
+                            target='_blank'
                             className='cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70'
                         >
                             <FaCube className='h-5 w-5' />

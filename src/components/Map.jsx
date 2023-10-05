@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import ReactMapGl, { Marker } from 'react-map-gl'
+import ReactMapGl, { Layer, Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
 import { useSelector } from 'react-redux'
@@ -10,6 +10,9 @@ import pointGreen from '../images/Circle_Green.png'
 import pointGray from '../images/Circle_Gray.png'
 import pointRed from '../images/Circle_Red.png'
 import pointYellow from '../images/Circle_Yellow.png'
+import compassRose from '../images/pontos-cardeais.png'
+import maplayer from '../images/Layer_MAPA.svg'
+import { Avatar, IconButton } from '@material-tailwind/react'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
@@ -42,7 +45,7 @@ function Map() {
     const handleOpen = () => setOpen(!open)
 
     return (
-        <div className='z-1'>
+        <div className='relative z-1'>
             <ReactMapGl
                 {...viewState}
                 mapboxAccessToken={TOKEN}
@@ -112,6 +115,9 @@ function Map() {
                             />
                         </Marker>
                     ))}
+                <div className='top-5 right-5 absolute bg-white rounded-full p-2'>
+                    <Avatar src={compassRose} size='lg' />
+                </div>
             </ReactMapGl>
         </div>
     )
