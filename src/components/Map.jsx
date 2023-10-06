@@ -39,9 +39,6 @@ function Map() {
         longitude: -38.31955,
         latitude: -12.65735,
         zoom: 17.4,
-
-        pitch: 49,
-        bearing: 144,
     })
     const handleOpen = () => setOpen(!open)
 
@@ -117,8 +114,8 @@ function Map() {
                         </Marker>
                     ))}
 
-                {/* Image Overlay */}
-                {/* <div className='absolute inset-0 pointer-events-none z-0'>
+                {/* Image Overlay
+                <div className='absolute inset-0 pointer-events-none z-0'>
                     <img
                         src={maplayer}
                         alt='Map Layer'
