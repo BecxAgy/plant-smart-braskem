@@ -45,12 +45,17 @@ export function DefaultSidebar({
                     }}
                 >
                     <div>
-                        <img
-                            src={logoBraskem}
-                            width={180}
-                            alt=''
-                            onClick={() => setOpenSidebar(!openSidebar)}
-                        />
+                        <div className='text-center'>
+                            {' '}
+                            {/* Centering container */}
+                            <img
+                                src={logoBraskem}
+                                width={180}
+                                alt=''
+                                onClick={() => setOpenSidebar(!openSidebar)}
+                                className='mx-auto' // Center the image
+                            />
+                        </div>
 
                         <GroupColorFilter setSelectedColor={setSelectedColor} />
 
@@ -71,8 +76,7 @@ export function DefaultSidebar({
                             }}
                             className='bg-blue-gray-900 rounded-xl'
                             type='search'
-                            color='blue'
-                            label='Tag Name'
+                            label='Isometric Name'
                             icon={<MagnifyingGlassIcon></MagnifyingGlassIcon>}
                         />
                     </div>
