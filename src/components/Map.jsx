@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import ReactMapGl, { Layer, Marker } from 'react-map-gl'
+import ReactMapGl, { Layer, Marker, Overlay } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
 import { useSelector } from 'react-redux'
@@ -22,6 +22,7 @@ function Map() {
     const [search, setSearch] = useState('')
     const [intervention, setIntervention] = useState(null)
     const [selectedColor, setSelectedColor] = useState('')
+    const [showOverlay, setShowOverlay] = useState(true)
     const [selectedProject, setSelectedProject] = useState('') // Estado para o projeto selecionado
     const interventionsFiltered = useMemo(() => {
         const lowerSearch = search.toLowerCase()
@@ -54,7 +55,7 @@ function Map() {
                     'mapbox://styles/rebecaaguiar/clmoulsa604qe01qb3r6k01sj'
                 }
             >
-                <div className='w-full sm:w-1/2 z-10'>
+                <div className='w-full sm:w-1/2'>
                     <div className='sm:flex p-10'>
                         <div className='sm:w-2/4'>
                             <DefaultSidebar
@@ -115,7 +116,20 @@ function Map() {
                             />
                         </Marker>
                     ))}
-                <div className='top-5 right-5 absolute bg-white rounded-full p-2'>
+
+                {/* Image Overlay */}
+                {/* <div className='absolute inset-0 pointer-events-none z-0'>
+                    <img
+                        src={maplayer}
+                        alt='Map Layer'
+                        className='w-full h-full'
+                    />
+                </div> */}
+
+                {/* Show/hide overlay button */}
+                <div
+                    className={`absolute bg-white rounded-full p-2 z-10 right-5 bottom-6`}
+                >
                     <Avatar src={compassRose} size='lg' />
                 </div>
             </ReactMapGl>
