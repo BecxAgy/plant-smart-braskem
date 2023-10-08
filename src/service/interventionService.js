@@ -8,7 +8,7 @@ const getInterventions = async () => {
         const res = await fetch(api + '/spreadsheet', config)
             .then(res => res.json())
             .catch(err => err)
-        console.log(res.data)
+        
         return res.data
     } catch (err) {
         console.log(err)

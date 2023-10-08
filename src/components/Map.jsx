@@ -10,9 +10,11 @@ import pointGreen from '../images/Circle_Green.png'
 import pointGray from '../images/Circle_Gray.png'
 import pointRed from '../images/Circle_Red.png'
 import pointYellow from '../images/Circle_Yellow.png'
-import compassRose from '../images/pontos-cardeais.png'
-import maplayer from '../images/Layer_MAPA.svg'
-import { Avatar, IconButton } from '@material-tailwind/react'
+import compassRose from '../images/Logo_Kmp.svg'
+import north from '../images/north_project.png'
+import layer from   '../images/Layer_Mapa.svg'
+import { Avatar, IconButton, Tooltip } from '@material-tailwind/react'
+import { Fa500Px } from 'react-icons/fa'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
@@ -36,9 +38,13 @@ function Map() {
     }, [interventions, search, selectedProject, selectedColor])
 
     const [viewState, setViewState] = React.useState({
-        longitude: -38.31955,
-        latitude: -12.65735,
-        zoom: 17.4,
+        longitude: -38.31978,
+        latitude: -12.65830,
+        pitch: 35,
+        bearing: 261.5,
+
+        zoom: 16.6,
+        
     })
     const handleOpen = () => setOpen(!open)
 
@@ -76,7 +82,19 @@ function Map() {
                         </div>
                     </div>
                 </div>
-
+                
+                    
+                    <Marker  
+                     pitchAlignment='map'
+                     rotationAlignment='map'
+                     rotation={-8}
+                        longitude={-38.320879}
+                                latitude={-12.658064}
+                                
+                                >
+                        <img src={layer} className=''/> 
+                    </Marker>
+                
                 {interventions &&
                     interventionsFiltered.map(marker => (
                         <Marker
@@ -125,9 +143,12 @@ function Map() {
 
                 {/* Show/hide overlay button */}
                 <div
-                    className={`absolute bg-white rounded-full p-2 z-10 right-5 bottom-6`}
+                    className={`absolute  right-5 bottom-6`}
                 >
-                    <Avatar src={compassRose} size='lg' />
+                    <Tooltip content=" Powered by Kempetro Technology®">
+                    <Avatar src={compassRose}   />
+                    </Tooltip>
+                   
                 </div>
             </ReactMapGl>
         </div>

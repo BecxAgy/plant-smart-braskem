@@ -1,7 +1,7 @@
-import { Input, List } from '@material-tailwind/react'
+import { Input, List, Typography } from '@material-tailwind/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import InterventionItemList from './InterventionItemList'
-import logoBraskem from '../images/logoBraskem.png'
+import logoBraskem from '../images/logoBrask.svg'
 import { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import SelectProject from './SelectProject'
@@ -24,7 +24,7 @@ export function DefaultSidebar({
 
     return (
         <div
-            className={`p-5 rounded-lg absolute top-0 left-0 w-full md:w-1/3 ${
+            className={`p-5  absolute top-0 left-0 w-full md:w-1/3 ${
                 open ? 'hidden md:block' : ''
             }`}
         >
@@ -36,27 +36,30 @@ export function DefaultSidebar({
                     <HiMenuAlt2 className='text-white w-9 h-9' />
                 </div>
             ) : (
-                <div
-                    className='bg-white rounded-2xl p-10'
+                <div 
+                    className='relative bg-white rounded-2xl p-5'
                     style={{
                         height: '96vh',
+                       
                         minWidth: '18rem',
                         maxWidth: '25rem',
                     }}
                 >
-                    <div>
-                        <div className='text-center'>
+                    <div >
+                        <div className='text-center my-4'>
                             {' '}
                             {/* Centering container */}
                             <img
                                 src={logoBraskem}
-                                width={180}
+                                width={160}
                                 alt=''
                                 onClick={() => setOpenSidebar(!openSidebar)}
-                                className='mx-auto' // Center the image
+                                className='mx-auto ' // Center the image
                             />
                         </div>
-
+                        <div className="p-2">
+                            
+                        </div>
                         <GroupColorFilter setSelectedColor={setSelectedColor} />
 
                         {/* Adicione classes de responsividade ao SelectProject */}
@@ -82,22 +85,36 @@ export function DefaultSidebar({
                     </div>
 
                     {/* Mantenha a altura máxima responsiva */}
-                    <List className='scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto mt-12 h-3/5'>
+                    
+                    <List className=' absolute scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto mt-12'  style={{
+                        height: '60%',
+                        
+                       
+                        minWidth: '18rem',
+                        maxWidth: '25rem',
+                    }}>
                         {interventions &&
                             interventionsFiltered.map(marker => (
                                 <InterventionItemList
                                     key={marker.id}
                                     intervention={marker}
                                     onClick={() => {
-                                        console.log('entrou')
+                                        
                                         setOpen(!open)
                                         setIntervention(marker)
                                     }}
                                 />
                             ))}
                     </List>
+
+                
+                    
+                    
                 </div>
             )}
+
+           
+
         </div>
     )
 }

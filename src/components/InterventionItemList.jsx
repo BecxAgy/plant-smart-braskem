@@ -7,12 +7,16 @@ import {
     Typography,
 } from '@material-tailwind/react'
 
+import logo from '../images/Logo_Iso_mini.png';
+
 function InterventionItemList({ intervention, onClick }) {
     return (
         intervention && (
             <div className='py-4'>
                 <ListItem onClick={onClick}>
-                    <ListItemPrefix></ListItemPrefix>
+                    <ListItemPrefix>
+                        <img src={logo} className=''/>
+                    </ListItemPrefix>
                     <div className='w-full'>
                         <Typography className='font-bold' color='blue-gray'>
                             {intervention.tag}
