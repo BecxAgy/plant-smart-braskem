@@ -2,14 +2,3 @@
     transform: none !important; /* Desabilita o transform */
 }
 
-/* Estilos para a lista quando a altura da tela for menor que 880px */
-@media screen and (max-height: 880px) {
-    .small-list {
-      font-size: 14px; /* Tamanho menor de fonte */
-      line-height: 1.3; /* Espaçamento menor entre linhas */
-      height: 40%; /* Altura menor da lista */
-      minWidth: 16rem; /* Largura mínima menor */
-      maxWidth: 20rem; /* Largura máxima menor */
-    }
-  }
-  
