@@ -37,9 +37,9 @@ export function DefaultSidebar({
                 </div>
             ) : (
                 <div 
-                    className='relative bg-white rounded-2xl p-5'
+                    className='grid gird-rows h-[96vh] bg-white rounded-2xl p-5'
                     style={{
-                        height: '96vh',
+                        
                        
                         minWidth: '18rem',
                         maxWidth: '25rem',
@@ -86,13 +86,7 @@ export function DefaultSidebar({
 
                     {/* Mantenha a altura máxima responsiva */}
                     
-                    <List className=' absolute scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto mt-12'  style={{
-                        height: '60%',
-                        
-                       
-                        minWidth: '18rem',
-                        maxWidth: '25rem',
-                    }}>
+                    <List className='scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto mt-12'  >
                         {interventions &&
                             interventionsFiltered.map(marker => (
                                 <InterventionItemList
@@ -107,7 +101,11 @@ export function DefaultSidebar({
                             ))}
                     </List>
 
-                
+                <div className="text-end">
+                <Typography variant='small' color='gray'>
+                    Powered by Kempetro Technology®
+                    </Typography>
+                </div>
                     
                     
                 </div>

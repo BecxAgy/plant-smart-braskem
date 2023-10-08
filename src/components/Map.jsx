@@ -143,11 +143,11 @@ function Map() {
 
                 {/* Show/hide overlay button */}
                 <div
-                    className={`absolute  right-5 bottom-6`}
+                    className={`absolute p-2 right-5 bottom-6`}
                 >
-                    <Tooltip content=" Powered by Kempetro Technology®">
-                    <Avatar src={compassRose}   />
-                    </Tooltip>
+                    
+                    <Avatar src={compassRose} size='lg'   />
+                    
                    
                 </div>
             </ReactMapGl>
