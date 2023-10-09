@@ -13,8 +13,9 @@ import pointYellow from '../images/Circle_Yellow.png'
 import compassRose from '../images/Logo_Kmp.svg'
 import north from '../images/north_project.png'
 import layer from   '../images/Layer_Mapa.svg'
-import { Avatar, IconButton, Tooltip } from '@material-tailwind/react'
+import { Avatar, Badge, IconButton, Tooltip, Typography } from '@material-tailwind/react'
 import { Fa500Px } from 'react-icons/fa'
+import { HiHeart } from 'react-icons/hi'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
@@ -147,6 +148,19 @@ function Map() {
                 >
                     
                     <Avatar src={compassRose} size='lg'   />
+                    
+                   
+                </div>
+                <div
+                    className={` absolute p-2 right-8 top-8  `}
+                >
+                    
+                    
+                       <a href='https://drive.google.com/file/d/1qEWDMB6XvPPX6E4owFpeOTVDNrS18MOv/view?usp=sharing' target='_blank' className='p-2 font-bold hover:p-3'>
+                        <Badge content='HELP!' className='font-bold p-2 hover:p-3'></Badge>
+                       </a>
+                        
+                    
                     
                    
                 </div>

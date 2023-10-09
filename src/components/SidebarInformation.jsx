@@ -28,7 +28,7 @@ export function DefaultSidebar({
                 open ? 'hidden md:block' : ''
             }`}
         >
-            {openSidebar ? (
+            {!openSidebar ? (
                 <div
                     className='absolute m-5'
                     onClick={() => setOpenSidebar(!openSidebar)}

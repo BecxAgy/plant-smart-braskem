@@ -112,7 +112,7 @@ function DialogDefault({ setopen, open, intervention }) {
                     </Tooltip>
                     <Tooltip content='3D'>
                         <a
-                            href='https://autode.sk/4511oXF'
+                            href={intervention && intervention.responsavel}
                             target='_blank'
                             className='cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70'
                         >
