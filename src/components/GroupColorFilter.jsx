@@ -10,8 +10,7 @@ import {
 import { useSelector } from 'react-redux'
 import { LuFilterX } from 'react-icons/lu'
 
-function GroupColorFilter({ setSelectedColor, selectedColor }) {
-    const { interventions, loading } = useSelector(state => state.intervention)
+function GroupColorFilter({ setSelectedColor, selectedColor, interventions }) {
     const grayAlerts = interventions.filter(
         interv => interv.alerta === 'gray',
     ).length

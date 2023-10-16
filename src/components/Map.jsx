@@ -4,16 +4,21 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
 import { useSelector } from 'react-redux'
 import DialogDefault from './ModalIntervention'
-import mapPoint from '../images/MarkerMap.png'
 import { ImArrowDown } from 'react-icons/im'
 import pointGreen from '../images/Circle_Green.png'
 import pointGray from '../images/Circle_Gray.png'
 import pointRed from '../images/Circle_Red.png'
 import pointYellow from '../images/Circle_Yellow.png'
 import compassRose from '../images/Logo_Kmp.svg'
-import north from '../images/north_project.png'
-import layer from   '../images/Layer_Mapa.svg'
-import { Avatar, Badge, IconButton, Tooltip, Typography } from '@material-tailwind/react'
+
+import layer from '../images/Layer_Mapa.svg'
+import {
+    Avatar,
+    Badge,
+    IconButton,
+    Tooltip,
+    Typography,
+} from '@material-tailwind/react'
 import { Fa500Px } from 'react-icons/fa'
 import { HiHeart } from 'react-icons/hi'
 
@@ -40,12 +45,11 @@ function Map() {
 
     const [viewState, setViewState] = React.useState({
         longitude: -38.31978,
-        latitude: -12.65830,
+        latitude: -12.6583,
         pitch: 35,
         bearing: 261.5,
 
         zoom: 16.6,
-        
     })
     const handleOpen = () => setOpen(!open)
 
@@ -83,19 +87,17 @@ function Map() {
                         </div>
                     </div>
                 </div>
-                
-                    
-                    <Marker  
-                     pitchAlignment='map'
-                     rotationAlignment='map'
-                     rotation={-8}
-                        longitude={-38.320879}
-                                latitude={-12.658064}
-                                
-                                >
-                        <img src={layer} className=''/> 
-                    </Marker>
-                
+
+                <Marker
+                    pitchAlignment='map'
+                    rotationAlignment='map'
+                    rotation={-8}
+                    longitude={-38.320879}
+                    latitude={-12.658064}
+                >
+                    <img src={layer} className='' />
+                </Marker>
+
                 {interventions &&
                     interventionsFiltered.map(marker => (
                         <Marker
@@ -143,26 +145,20 @@ function Map() {
                 </div> */}
 
                 {/* Show/hide overlay button */}
-                <div
-                    className={`absolute p-2 right-5 bottom-6`}
-                >
-                    
-                    <Avatar src={compassRose} size='lg'   />
-                    
-                   
+                <div className={`absolute p-2 right-5 bottom-6`}>
+                    <Avatar src={compassRose} size='lg' />
                 </div>
-                <div
-                    className={` absolute p-2 right-8 top-8  `}
-                >
-                    
-                    
-                       <a href='https://drive.google.com/file/d/1qEWDMB6XvPPX6E4owFpeOTVDNrS18MOv/view?usp=sharing' target='_blank' className='p-2 font-bold hover:p-3'>
-                        <Badge content='HELP!' className='font-bold p-2 hover:p-3'></Badge>
-                       </a>
-                        
-                    
-                    
-                   
+                <div className={` absolute p-2 right-8 top-8  `}>
+                    <a
+                        href='https://drive.google.com/file/d/1qEWDMB6XvPPX6E4owFpeOTVDNrS18MOv/view?usp=sharing'
+                        target='_blank'
+                        className='p-2 font-bold hover:p-3'
+                    >
+                        <Badge
+                            content='HELP!'
+                            className='font-bold p-2 hover:p-3'
+                        ></Badge>
+                    </a>
                 </div>
             </ReactMapGl>
         </div>

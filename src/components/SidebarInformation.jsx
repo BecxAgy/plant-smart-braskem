@@ -2,11 +2,11 @@ import { Input, List, Typography } from '@material-tailwind/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import InterventionItemList from './InterventionItemList'
 import logoBraskem from '../images/logoBrask.svg'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import SelectProject from './SelectProject'
 import GroupColorFilter from './GroupColorFilter'
-import { HiMenuAlt2 } from 'react-icons/hi'
+import { HiMenuAlt2, HiMenuAlt3 } from 'react-icons/hi'
 
 export function DefaultSidebar({
     open,
@@ -20,7 +20,7 @@ export function DefaultSidebar({
     setSearch,
 }) {
     const { interventions } = useSelector(state => state.intervention)
-    const [openSidebar, setOpenSidebar] = useState(false)
+    const [openSidebar, setOpenSidebar] = useState(true)
 
     return (
         <div
@@ -36,31 +36,33 @@ export function DefaultSidebar({
                     <HiMenuAlt2 className='text-white w-9 h-9' />
                 </div>
             ) : (
-                <div 
+                <div
                     className='grid gird-rows h-[96vh] bg-white rounded-2xl p-5'
                     style={{
-                        
-                       
                         minWidth: '18rem',
                         maxWidth: '25rem',
                     }}
                 >
-                    <div >
-                        <div className='text-center my-4'>
+                    <div>
+                        <div className='relative text-center my-4'>
                             {' '}
                             {/* Centering container */}
+                            <HiMenuAlt3
+                                className='w-8 h-8 absolute top-3 right-2'
+                                onClick={() => setOpenSidebar(!openSidebar)}
+                            />
                             <img
                                 src={logoBraskem}
                                 width={160}
                                 alt=''
-                                onClick={() => setOpenSidebar(!openSidebar)}
                                 className='mx-auto ' // Center the image
                             />
                         </div>
-                        <div className="p-2">
-                            
-                        </div>
-                        <GroupColorFilter setSelectedColor={setSelectedColor} />
+                        <div className='p-2'></div>
+                        <GroupColorFilter
+                            setSelectedColor={setSelectedColor}
+                            interventions={interventionsFiltered}
+                        />
 
                         {/* Adicione classes de responsividade ao SelectProject */}
                         <div className='w-full md:w-32 my-2'>
@@ -85,15 +87,14 @@ export function DefaultSidebar({
                     </div>
 
                     {/* Mantenha a altura máxima responsiva */}
-                    
-                    <List className='scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto mt-12'  >
+
+                    <List className='scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto mt-12'>
                         {interventions &&
                             interventionsFiltered.map(marker => (
                                 <InterventionItemList
                                     key={marker.id}
                                     intervention={marker}
                                     onClick={() => {
-                                        
                                         setOpen(!open)
                                         setIntervention(marker)
                                     }}
@@ -101,18 +102,13 @@ export function DefaultSidebar({
                             ))}
                     </List>
 
-                <div className="text-end">
-                <Typography variant='small' color='gray'>
-                    Powered by Kempetro Technology®
-                    </Typography>
-                </div>
-                    
-                    
+                    <div className='text-end'>
+                        <Typography variant='small' color='gray'>
+                            Powered by Kempetro Technology®
+                        </Typography>
+                    </div>
                 </div>
             )}
-
-           
-
         </div>
     )
 }
