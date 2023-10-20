@@ -1,9 +1,7 @@
-import React from 'react'
 import { Select, Option } from '@material-tailwind/react'
 
 function SelectProject({ setSelectedProject, selectedProject }) {
     const handleSelectChange = value => {
-       
         setSelectedProject(value) // Atualize o estado com o novo valor selecionado.
     }
 

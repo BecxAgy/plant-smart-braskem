@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Chip, Badge } from '@material-tailwind/react'
 import {
     FaCheck,
@@ -6,8 +6,6 @@ import {
     FaExclamationTriangle,
     FaFire,
 } from 'react-icons/fa'
-
-import { useSelector } from 'react-redux'
 import { LuFilterX } from 'react-icons/lu'
 
 function GroupColorFilter({ setSelectedColor, selectedColor, interventions }) {

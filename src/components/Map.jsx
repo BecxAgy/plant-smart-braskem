@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import ReactMapGl, { Layer, Marker, Overlay } from 'react-map-gl'
+import ReactMapGl, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
 import { useSelector } from 'react-redux'
@@ -10,17 +10,10 @@ import pointGray from '../images/Circle_Gray.png'
 import pointRed from '../images/Circle_Red.png'
 import pointYellow from '../images/Circle_Yellow.png'
 import compassRose from '../images/Logo_Kmp.svg'
+import arrow from '../images/Vetor_Seta.svg'
 
 import layer from '../images/Layer_Mapa.svg'
-import {
-    Avatar,
-    Badge,
-    IconButton,
-    Tooltip,
-    Typography,
-} from '@material-tailwind/react'
-import { Fa500Px } from 'react-icons/fa'
-import { HiHeart } from 'react-icons/hi'
+import { Avatar, Badge } from '@material-tailwind/react'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
@@ -30,7 +23,6 @@ function Map() {
     const [search, setSearch] = useState('')
     const [intervention, setIntervention] = useState(null)
     const [selectedColor, setSelectedColor] = useState('')
-    const [showOverlay, setShowOverlay] = useState(true)
     const [selectedProject, setSelectedProject] = useState('') // Estado para o projeto selecionado
     const interventionsFiltered = useMemo(() => {
         const lowerSearch = search.toLowerCase()
@@ -110,18 +102,9 @@ function Map() {
                                 handleOpen()
                             }}
                         >
-                            {open && marker === intervention ? (
-                                <ImArrowDown
-                                    color='yellow'
-                                    className='w-5 h-5  '
-                                />
-                            ) : (
-                                <></>
-                            )}
-
                             <img
                                 key={marker.id}
-                                className='w-5  h-5 hover:h-7 hover:w-8 cursor-pointer '
+                                className='w-5 h-5 hover:h-7 hover:w-8 cursor-pointer'
                                 src={
                                     marker.alerta === 'green'
                                         ? pointGreen
@@ -135,18 +118,22 @@ function Map() {
                         </Marker>
                     ))}
 
-                {/* Image Overlay
-                <div className='absolute inset-0 pointer-events-none z-0'>
-                    <img
-                        src={maplayer}
-                        alt='Map Layer'
-                        className='w-full h-full'
-                    />
-                </div> */}
+                {/* Render the clicked marker conditionally when open is true */}
+                {open && intervention && (
+                    <Marker
+                        pitchAlignment='map'
+                        rotationAlignment='viewport'
+                        longitude={intervention.longitude - 0.00016}
+                        latitude={intervention.latitude - 0.000025}
+                    >
+                        <img src={arrow} alt='arrow' className='w-8 h-8' />
+                    </Marker>
+                )}
 
                 {/* Show/hide overlay button */}
-                <div className={`absolute p-2 right-5 bottom-6`}>
+                <div className={`absolute p-2 right-5 bottom-2`}>
                     <Avatar src={compassRose} size='lg' />
+                    <p className='text-center text-white italic'>V1.091023</p>
                 </div>
                 <div className={` absolute p-2 right-8 top-8  `}>
                     <a

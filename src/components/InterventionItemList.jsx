@@ -1,13 +1,11 @@
-import React from 'react'
 import {
-    Avatar,
     ListItem,
     ListItemPrefix,
     Progress,
     Typography,
 } from '@material-tailwind/react'
 
-import logo from '../images/Logo_Iso_mini.png';
+import logo from '../images/Logo_Iso_mini.png'
 
 function InterventionItemList({ intervention, onClick }) {
     return (
@@ -15,7 +13,7 @@ function InterventionItemList({ intervention, onClick }) {
             <div className='py-4'>
                 <ListItem onClick={onClick}>
                     <ListItemPrefix>
-                        <img src={logo} className=''/>
+                        <img src={logo} className='' />
                     </ListItemPrefix>
                     <div className='w-full'>
                         <Typography className='font-bold' color='blue-gray'>

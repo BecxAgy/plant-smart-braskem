@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import SelectProject from './SelectProject'
 import GroupColorFilter from './GroupColorFilter'
 import { HiMenuAlt2, HiMenuAlt3 } from 'react-icons/hi'
+import Notification from './Notification'
 
 export function DefaultSidebar({
     open,
@@ -30,7 +31,7 @@ export function DefaultSidebar({
         >
             {!openSidebar ? (
                 <div
-                    className='absolute m-5'
+                    className='absolute m-5 '
                     onClick={() => setOpenSidebar(!openSidebar)}
                 >
                     <HiMenuAlt2 className='text-white w-9 h-9' />
@@ -84,11 +85,12 @@ export function DefaultSidebar({
                             label='Isometric Name'
                             icon={<MagnifyingGlassIcon></MagnifyingGlassIcon>}
                         />
+                        <Notification />
                     </div>
 
                     {/* Mantenha a altura máxima responsiva */}
 
-                    <List className='scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto mt-12'>
+                    <List className='scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent overflow-y-auto mt-3'>
                         {interventions &&
                             interventionsFiltered.map(marker => (
                                 <InterventionItemList
