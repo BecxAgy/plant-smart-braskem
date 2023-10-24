@@ -80,9 +80,10 @@ export function DefaultSidebar({
                                 setSearch(e.target.value)
                                 console.log(search)
                             }}
-                            className='bg-blue-gray-900 rounded-xl'
+                            className='bg-blue-gray-900 rounded-md shadow '
                             type='search'
-                            label='Isometric Name'
+                            color='blue'
+                            label='Nome do Isométrico'
                             icon={<MagnifyingGlassIcon></MagnifyingGlassIcon>}
                         />
                         <Notification />

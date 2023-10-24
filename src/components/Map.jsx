@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
 import { useSelector } from 'react-redux'
 import DialogDefault from './ModalIntervention'
-import { ImArrowDown } from 'react-icons/im'
+
 import pointGreen from '../images/Circle_Green.png'
 import pointGray from '../images/Circle_Gray.png'
 import pointRed from '../images/Circle_Red.png'
@@ -12,8 +12,10 @@ import pointYellow from '../images/Circle_Yellow.png'
 import compassRose from '../images/Logo_Kmp.svg'
 import arrow from '../images/Vetor_Seta.svg'
 
-import layer from '../images/Layer_Mapa.svg'
+import markerua from '../images/Marker_UA1.png'
+import markeruo from '../images/Marker_UO1.png'
 import { Avatar, Badge } from '@material-tailwind/react'
+import { NavigationControl } from 'react-map-gl'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
@@ -40,8 +42,6 @@ function Map() {
         latitude: -12.6583,
         pitch: 35,
         bearing: 261.5,
-
-        zoom: 16.6,
     })
     const handleOpen = () => setOpen(!open)
 
@@ -87,7 +87,19 @@ function Map() {
                     longitude={-38.320879}
                     latitude={-12.658064}
                 >
-                    <img src={layer} className='' />
+                    <img src={markerua} className='w-20 h-20 cursor-pointer' />
+                </Marker>
+                <Marker
+                    pitchAlignment='map'
+                    rotationAlignment='map'
+                    rotation={-8}
+                    longitude={-38.31}
+                    latitude={-12.6}
+                >
+                    <img
+                        src={markeruo}
+                        className='w-5 h-5 hover:h-7 hover:w-8 cursor-pointer'
+                    />
                 </Marker>
 
                 {interventions &&

@@ -6,6 +6,7 @@ import {
 } from '@material-tailwind/react'
 
 import logo from '../images/Logo_Iso_mini.png'
+import { CircularProgress } from '@mui/joy'
 
 function InterventionItemList({ intervention, onClick }) {
     return (
@@ -13,20 +14,20 @@ function InterventionItemList({ intervention, onClick }) {
             <div className='py-4'>
                 <ListItem onClick={onClick}>
                     <ListItemPrefix>
-                        <img src={logo} className='' />
+                        <CircularProgress
+                            size='lg'
+                            determinate
+                            value={intervention.avanco_atual}
+                        >
+                            <Typography>
+                                {intervention.avanco_atual}%
+                            </Typography>
+                        </CircularProgress>
                     </ListItemPrefix>
                     <div className='w-full'>
                         <Typography className='font-bold' color='blue-gray'>
                             {intervention.tag}
                         </Typography>
-
-                        <div className=' w-1/2 mt-1'>
-                            <Progress
-                                className='bg-gray-100'
-                                value={intervention.avanco_atual}
-                                size='md'
-                            />
-                        </div>
                     </div>
                 </ListItem>
             </div>
