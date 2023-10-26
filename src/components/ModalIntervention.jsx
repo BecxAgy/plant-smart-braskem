@@ -9,8 +9,15 @@ import {
 } from '@material-tailwind/react'
 import { FaRegTimesCircle, FaDownload, FaCube } from 'react-icons/fa'
 import { AiTwotoneAlert } from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
+import { downloadPdfIso } from '../slice/interventionSlice'
 
 function DialogDefault({ setopen, open, intervention }) {
+    const dispatch = useDispatch()
+
+    const downloadPdf = id => {
+        dispatch(downloadPdfIso(id))
+    }
     return (
         <Card
             className={`w-full shadow-lg ${!open ? 'hidden' : ''}`}
@@ -91,6 +98,7 @@ function DialogDefault({ setopen, open, intervention }) {
                     <Tooltip content='Link Isométrico'>
                         <a
                             href={intervention && intervention.link_iso}
+                            onClick={() => downloadPdf(intervention.link_iso)}
                             className='cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70'
                         >
                             <FaDownload className='h-5 w-5' />

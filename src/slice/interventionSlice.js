@@ -20,6 +20,16 @@ export const getAllInterventions = createAsyncThunk(
     },
 )
 
+export const downloadPdfIso = createAsyncThunk(
+    'intervention/download',
+    async (fileId, thunkAPI) => {
+        debugger
+        const data = await interventionService.downloadPdf(fileId)
+
+        return data
+    },
+)
+
 export const interventionSlice = createSlice({
     name: 'intervention',
     initialState,
@@ -39,6 +49,15 @@ export const interventionSlice = createSlice({
                 state.success = true
                 state.error = null
                 state.interventions = action.payload
+            })
+            .addCase(downloadPdfIso.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+            .addCase(downloadPdfIso.fulfilled, state => {
+                state.loading = false
+                state.success = true
+                state.error = null
             })
     },
 })

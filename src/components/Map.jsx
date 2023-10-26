@@ -42,6 +42,7 @@ function Map() {
         latitude: -12.6583,
         pitch: 35,
         bearing: 261.5,
+        zoom: 16.3,
     })
     const handleOpen = () => setOpen(!open)
 
