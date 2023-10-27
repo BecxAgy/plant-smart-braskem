@@ -11,6 +11,7 @@ import { FaRegTimesCircle, FaDownload, FaCube } from 'react-icons/fa'
 import { AiTwotoneAlert } from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { downloadPdfIso } from '../slice/interventionSlice'
+import { Divider } from '@mui/joy'
 
 function DialogDefault({ setopen, open, intervention }) {
     const dispatch = useDispatch()
@@ -96,13 +97,12 @@ function DialogDefault({ setopen, open, intervention }) {
 
                 <div className='group mt-8 inline-flex flex-wrap items-center gap-3'>
                     <Tooltip content='Link Isométrico'>
-                        <a
-                            href={intervention && intervention.link_iso}
+                        <div
                             onClick={() => downloadPdf(intervention.link_iso)}
                             className='cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70'
                         >
                             <FaDownload className='h-5 w-5' />
-                        </a>
+                        </div>
                     </Tooltip>
                     <Tooltip content='Alerta'>
                         <span

@@ -4,7 +4,6 @@ const getInterventions = async () => {
     const config = requestConfig('GET', null)
 
     try {
-        debugger
         const res = await fetch(api + '/spreadsheet', config)
             .then(res => res.json())
             .catch(err => err)
@@ -16,16 +15,13 @@ const getInterventions = async () => {
 }
 
 const downloadPdf = async fileId => {
-    const config = requestConfig('GET', null)
-
-    console.log('Iniciando o download do pdf:' + fileId)
-
     try {
         const response = await fetch(
             `http://plantsmart.kempetro.com.br/api/googledrive/download/${fileId}`,
-            config,
+            {
+                method: 'GET',
+            },
         )
-
         if (response.ok) {
             console.log(response.headers)
             const contentDisposition = await response.headers.get(
@@ -45,6 +41,12 @@ const downloadPdf = async fileId => {
 
                     // Cria um objeto URL temporário para o blob
                     const pdfUrl = URL.createObjectURL(pdfBlob)
+
+                    // Cria um link de download programaticamente e simula um clique para iniciar o download
+                    const a = document.createElement('a')
+                    a.href = pdfUrl
+                    a.download = fileName // Define o nome do arquivo para o download
+                    a.click()
 
                     // Limpa o objeto URL após o download
                     URL.revokeObjectURL(pdfUrl)
