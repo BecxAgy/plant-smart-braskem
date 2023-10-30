@@ -12,8 +12,7 @@ import pointYellow from '../images/Circle_Yellow.png'
 import compassRose from '../images/Logo_Kmp.svg'
 import arrow from '../images/Vetor_Seta.svg'
 
-import markerua from '../images/Marker_UA1.png'
-import markeruo from '../images/Marker_UO1.png'
+import layer from '../images/Layer_Mapa.svg'
 import { Avatar, Badge } from '@material-tailwind/react'
 import { NavigationControl } from 'react-map-gl'
 
@@ -88,19 +87,7 @@ function Map() {
                     longitude={-38.320879}
                     latitude={-12.658064}
                 >
-                    <img src={markerua} className='w-20 h-20 cursor-pointer' />
-                </Marker>
-                <Marker
-                    pitchAlignment='map'
-                    rotationAlignment='map'
-                    rotation={-8}
-                    longitude={-38.31}
-                    latitude={-12.6}
-                >
-                    <img
-                        src={markeruo}
-                        className='w-5 h-5 hover:h-7 hover:w-8 cursor-pointer'
-                    />
+                    <img src={layer} className='' />
                 </Marker>
 
                 {interventions &&
@@ -146,11 +133,11 @@ function Map() {
                 {/* Show/hide overlay button */}
                 <div className={`absolute p-2 right-5 bottom-2`}>
                     <Avatar src={compassRose} size='lg' />
-                    <p className='text-center text-white italic'>V1.091023</p>
+                    <p className='text-center text-white italic'>v1.271023</p>
                 </div>
                 <div className={` absolute p-2 right-8 top-8  `}>
                     <a
-                        href='https://drive.google.com/file/d/1qEWDMB6XvPPX6E4owFpeOTVDNrS18MOv/view?usp=sharing'
+                        href='https://jpnor-my.sharepoint.com/:b:/g/personal/mateus_almeida_kempetro_com_br/ESugvqnLrbRJjWVulXHEjW8B2tJ3AA5CGPcfKA_VJcDDLA?e=5Y38xt'
                         target='_blank'
                         className='p-2 font-bold hover:p-3'
                     >
