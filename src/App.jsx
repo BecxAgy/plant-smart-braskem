@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import Map from './components/Map'
+
 import { DefaultSidebar } from './components/SidebarInformation'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllInterventions } from './slice/interventionSlice'
 import { getAllProjects } from './slice/projectSlice'
+import SmartMap from './components/Map'
 
 function App() {
     const dispatch = useDispatch()
@@ -20,7 +21,7 @@ function App() {
 
             {interventions && (
                 <div className=' max-h-screen overflow-hidden'>
-                    <Map markerData={interventions} />
+                    <SmartMap markerData={interventions} />
                 </div>
             )}
         </div>
