@@ -13,7 +13,6 @@ function SelectProject({ setSelectedProject, selectedProject }) {
         { label: 'PJ-0601420', value: 'PJ-0601420' },
         { label: 'PJ-0601427', value: 'PJ-0601427' },
         { label: 'PJ-0601429', value: 'PJ-0601429' },
-        { label: 'PJ-0601420', value: 'PJ-0601420' },
         { label: 'PJ-0601638', value: 'PJ-0601638' },
         { label: 'PJ-0601656', value: 'PJ-0601656' },
         { label: 'PJ-0601768', value: 'PJ-0601768' },

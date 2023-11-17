@@ -13,9 +13,8 @@ const initialState = {
 export const getAllInterventions = createAsyncThunk(
     'intervention/getall',
     async (_, thunkAPI) => {
-        debugger
         const data = await interventionService.getInterventions()
-        console.log()
+
         return data[0]
     },
 )
@@ -23,7 +22,6 @@ export const getAllInterventions = createAsyncThunk(
 export const downloadPdfIso = createAsyncThunk(
     'intervention/download',
     async (fileId, thunkAPI) => {
-        debugger
         const data = await interventionService.downloadPdf(fileId)
 
         return data

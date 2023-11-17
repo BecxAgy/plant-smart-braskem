@@ -13,8 +13,9 @@ import compassRose from '../images/Logo_Kmp.svg'
 import arrow from '../images/Vetor_Seta.svg'
 
 import layer from '../images/Layer_Mapa.svg'
-import { Avatar, Badge } from '@material-tailwind/react'
-import { NavigationControl } from 'react-map-gl'
+import { Avatar, Badge, Progress } from '@material-tailwind/react'
+import { CircularProgress } from '@mui/joy'
+import CardGeralInformation from './CardGeralInformation'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
@@ -23,6 +24,7 @@ function Map() {
     const [open, setOpen] = React.useState(false)
     const [search, setSearch] = useState('')
     const [intervention, setIntervention] = useState(null)
+    const [openSidebar, setOpenSidebar] = useState(true)
     const [selectedColor, setSelectedColor] = useState('')
     const [selectedProject, setSelectedProject] = useState('') // Estado para o projeto selecionado
     const interventionsFiltered = useMemo(() => {
@@ -59,6 +61,8 @@ function Map() {
                     <div className='sm:flex p-10'>
                         <div className='sm:w-2/4'>
                             <DefaultSidebar
+                                openSidebar={openSidebar}
+                                setOpenSidebar={setOpenSidebar}
                                 interventionsFiltered={interventionsFiltered}
                                 open={open}
                                 setOpen={setOpen}
@@ -132,10 +136,11 @@ function Map() {
 
                 {/* Show/hide overlay button */}
                 <div className={`absolute p-2 right-5 bottom-2`}>
-                    <Avatar src={compassRose} size='lg' />
+                    <Avatar src={compassRose} />
+
                     <p className='text-center text-white italic'>v1.271023</p>
                 </div>
-                <div className={` absolute p-2 right-8 top-8  `}>
+                <div className={` absolute p-2 right-8 top-5  `}>
                     <a
                         href='https://jpnor-my.sharepoint.com/:b:/g/personal/mateus_almeida_kempetro_com_br/ESugvqnLrbRJjWVulXHEjW8B2tJ3AA5CGPcfKA_VJcDDLA?e=5Y38xt'
                         target='_blank'
@@ -146,6 +151,9 @@ function Map() {
                             className='font-bold p-2 hover:p-3'
                         ></Badge>
                     </a>
+                </div>
+                <div className='absolute right-5'>
+                    <CardGeralInformation openSidebar={openSidebar} />
                 </div>
             </ReactMapGl>
         </div>

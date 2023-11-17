@@ -10,6 +10,8 @@ import { HiMenuAlt2, HiMenuAlt3 } from 'react-icons/hi'
 import Notification from './Notification'
 
 export function DefaultSidebar({
+    openSidebar,
+    setOpenSidebar,
     open,
     setOpen,
     setIntervention,
@@ -21,11 +23,10 @@ export function DefaultSidebar({
     setSearch,
 }) {
     const { interventions } = useSelector(state => state.intervention)
-    const [openSidebar, setOpenSidebar] = useState(true)
 
     return (
         <div
-            className={`p-5  absolute top-0 left-0 w-full md:w-1/3 ${
+            className={`p-5  absolute top-0 left-0 w-full md:w-1/3 z-5 ${
                 open ? 'hidden md:block' : ''
             }`}
         >
