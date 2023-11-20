@@ -152,7 +152,7 @@ function Map() {
                         ></Badge>
                     </a>
                 </div>
-                <div className='absolute right-5'>
+                <div className='absolute right-5 sm:hidden'>
                     <CardGeralInformation openSidebar={openSidebar} />
                 </div>
             </ReactMapGl>
