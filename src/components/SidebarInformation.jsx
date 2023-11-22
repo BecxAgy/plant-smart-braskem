@@ -8,6 +8,7 @@ import SelectProject from './SelectProject'
 import GroupColorFilter from './GroupColorFilter'
 import { HiMenuAlt2, HiMenuAlt3 } from 'react-icons/hi'
 import Notification from './Notification'
+import './sidebar.css'
 
 export function DefaultSidebar({
     openSidebar,
@@ -26,9 +27,9 @@ export function DefaultSidebar({
 
     return (
         <div
-            className={`p-5  absolute top-0 left-0 w-full md:w-1/3 z-5 ${
-                open ? 'hidden md:block' : ''
-            }`}
+            className={`p-5 absolute top-0 left-0 w-full z-0 sm:${
+                open ? 'hidden' : ''
+            } index-100`}
         >
             {!openSidebar ? (
                 <div

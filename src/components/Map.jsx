@@ -4,17 +4,14 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { DefaultSidebar } from './SidebarInformation'
 import { useSelector } from 'react-redux'
 import DialogDefault from './ModalIntervention'
-
 import pointGreen from '../images/Circle_Green.png'
 import pointGray from '../images/Circle_Gray.png'
 import pointRed from '../images/Circle_Red.png'
 import pointYellow from '../images/Circle_Yellow.png'
 import compassRose from '../images/Logo_Kmp.svg'
 import arrow from '../images/Vetor_Seta.svg'
-
 import layer from '../images/Layer_Mapa.svg'
-import { Avatar, Badge, Progress } from '@material-tailwind/react'
-import { CircularProgress } from '@mui/joy'
+import { Avatar, Badge } from '@material-tailwind/react'
 import CardGeralInformation from './CardGeralInformation'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
@@ -48,7 +45,7 @@ function Map() {
     const handleOpen = () => setOpen(!open)
 
     return (
-        <div className='relative z-1'>
+        <div className='relative '>
             <ReactMapGl
                 {...viewState}
                 mapboxAccessToken={TOKEN}
@@ -57,51 +54,56 @@ function Map() {
                     'mapbox://styles/rebecaaguiar/clmoulsa604qe01qb3r6k01sj'
                 }
             >
-                <div className='w-full sm:w-1/2'>
-                    <div className='sm:flex p-10'>
-                        <div className='sm:w-2/4'>
-                            <DefaultSidebar
-                                openSidebar={openSidebar}
-                                setOpenSidebar={setOpenSidebar}
-                                interventionsFiltered={interventionsFiltered}
-                                open={open}
-                                setOpen={setOpen}
-                                setIntervention={setIntervention}
-                                setSelectedColor={setSelectedColor}
-                                selectedProject={selectedProject}
-                                setSelectedProject={setSelectedProject}
-                                search={search}
-                                setSearch={setSearch}
-                            />
-                        </div>
-                        <div className='sm:w-1/3 px-5'>
-                            <DialogDefault
-                                setopen={setOpen}
-                                open={open}
-                                intervention={intervention}
-                            />
+                <div className='grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-3 p-10'>
+                    <div className=''>
+                        <DefaultSidebar
+                            openSidebar={openSidebar}
+                            setOpenSidebar={setOpenSidebar}
+                            interventionsFiltered={interventionsFiltered}
+                            open={open}
+                            setOpen={setOpen}
+                            setIntervention={setIntervention}
+                            setSelectedColor={setSelectedColor}
+                            selectedProject={selectedProject}
+                            setSelectedProject={setSelectedProject}
+                            search={search}
+                            setSearch={setSearch}
+                        />
+                    </div>
+                    <div className=''>
+                        <DialogDefault
+                            setopen={setOpen}
+                            open={open}
+                            intervention={intervention}
+                        />
+                    </div>
+                    <div className='absolute right-5 sm:hidden'>
+                        <div className='flex flex-rows-2  gap-5'>
+                            <a
+                                href='https://jpnor-my.sharepoint.com/:b:/g/personal/mateus_almeida_kempetro_com_br/ESugvqnLrbRJjWVulXHEjW8B2tJ3AA5CGPcfKA_VJcDDLA?e=5Y38xt'
+                                target='_blank'
+                                className='p-2 font-bold hover:p-3'
+                            >
+                                <Badge
+                                    content='HELP!'
+                                    className='font-bold p-2 hover:p-3'
+                                ></Badge>
+                            </a>
+                            <CardGeralInformation openSidebar={openSidebar} />
                         </div>
                     </div>
                 </div>
 
-                <Marker
-                    pitchAlignment='map'
-                    rotationAlignment='map'
-                    rotation={-8}
-                    longitude={-38.320879}
-                    latitude={-12.658064}
-                >
-                    <img src={layer} className='' />
-                </Marker>
-
                 {interventions &&
                     interventionsFiltered.map(marker => (
                         <Marker
+                            style={{ zIndex: 90 }}
                             pitchAlignment='map'
                             rotationAlignment='viewport'
                             longitude={marker.longitude}
                             latitude={marker.latitude}
                             onClick={() => {
+                                console.log('rapaz')
                                 setIntervention(marker)
                                 handleOpen()
                             }}
@@ -122,6 +124,16 @@ function Map() {
                         </Marker>
                     ))}
 
+                <Marker
+                    pitchAlignment='map'
+                    rotationAlignment='map'
+                    rotation={-8}
+                    longitude={-38.320879}
+                    latitude={-12.658064}
+                >
+                    <img src={layer} className='' />
+                </Marker>
+
                 {/* Render the clicked marker conditionally when open is true */}
                 {open && intervention && (
                     <Marker
@@ -139,21 +151,6 @@ function Map() {
                     <Avatar src={compassRose} />
 
                     <p className='text-center text-white italic'>v1.271023</p>
-                </div>
-                <div className={` absolute p-2 right-8 top-5  `}>
-                    <a
-                        href='https://jpnor-my.sharepoint.com/:b:/g/personal/mateus_almeida_kempetro_com_br/ESugvqnLrbRJjWVulXHEjW8B2tJ3AA5CGPcfKA_VJcDDLA?e=5Y38xt'
-                        target='_blank'
-                        className='p-2 font-bold hover:p-3'
-                    >
-                        <Badge
-                            content='HELP!'
-                            className='font-bold p-2 hover:p-3'
-                        ></Badge>
-                    </a>
-                </div>
-                <div className='absolute right-5 sm:hidden'>
-                    <CardGeralInformation openSidebar={openSidebar} />
                 </div>
             </ReactMapGl>
         </div>

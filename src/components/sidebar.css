@@ -1,0 +1,6 @@
+/* Se a tela for menor que 1030px, defina o z-index como 100 para o elemento desejado */
+@media (max-width: 1030px) {
+    .index-100 {
+        z-index: 100;
+    }
+}

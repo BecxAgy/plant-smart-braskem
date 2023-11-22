@@ -21,8 +21,8 @@ function DialogDefault({ setopen, open, intervention }) {
     }
     return (
         <Card
-            className={`w-full shadow-lg ${!open ? 'hidden' : ''}`}
-            style={{ minWidth: '18rem', maxHeight: '90vh' }}
+            className={`w-full  shadow-lg ${!open ? 'hidden' : ''}`}
+            style={{ maxWidth: '18rem', maxHeight: '90vh', zIndex: 99 }}
         >
             <IconButton
                 onClick={() => setopen(false)}

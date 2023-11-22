@@ -19,7 +19,7 @@ function CardGeralInformation({ openSidebar }) {
                     <CircularProgress
                         size='lg'
                         determinate
-                        color='warning'
+                        color={status.Cor}
                         value={status.Avanco_Atual_Geral}
                     >
                         <Typography>{status.Avanco_Atual_Geral}%</Typography>

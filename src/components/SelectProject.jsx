@@ -3,7 +3,11 @@ import Select from 'react-select'
 
 function SelectProject({ setSelectedProject, selectedProject }) {
     const handleSelectChange = selectedOption => {
-        setSelectedProject(selectedOption.value) // Atualize o estado com o novo valor selecionado.
+        if (selectedOption == null) {
+            setSelectedProject('')
+        } else {
+            setSelectedProject(selectedOption.value)
+        }
     }
 
     // Lista de opções ordenada
@@ -36,6 +40,7 @@ function SelectProject({ setSelectedProject, selectedProject }) {
     options.sort((a, b) => a.label.localeCompare(b.label))
 
     const [inputValue, setInputValue] = useState('')
+    const [isClearable, setIsClearable] = useState(true)
 
     // Filtra as opções com base no valor de entrada
     const filteredOptions = options.filter(option =>
@@ -48,6 +53,7 @@ function SelectProject({ setSelectedProject, selectedProject }) {
                 label: selectedProject ? selectedProject : 'Projeto',
                 value: selectedProject,
             }}
+            isClearable={isClearable}
             onChange={handleSelectChange}
             options={filteredOptions}
             onInputChange={value => setInputValue(value)}
