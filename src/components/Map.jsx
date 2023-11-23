@@ -20,20 +20,27 @@ function Map() {
     const { interventions } = useSelector(state => state.intervention)
     const [open, setOpen] = React.useState(false)
     const [search, setSearch] = useState('')
+    const [searchTag, setSearchTag] = useState('')
     const [intervention, setIntervention] = useState(null)
     const [openSidebar, setOpenSidebar] = useState(true)
+    const [openCard, setOpenCard] = useState(true)
+    const [openProjects, setOpenProjects] = useState(true)
     const [selectedColor, setSelectedColor] = useState('')
     const [selectedProject, setSelectedProject] = useState('') // Estado para o projeto selecionado
     const interventionsFiltered = useMemo(() => {
         const lowerSearch = search.toLowerCase()
+        const lowerSearchTag = searchTag.toLowerCase()
 
         return interventions.filter(
             interv =>
                 interv.tag.toLowerCase().includes(lowerSearch) &&
+                interv.emperesa_montagem
+                    .toLowerCase()
+                    .includes(lowerSearchTag) &&
                 (selectedProject === '' || interv.PJ === selectedProject) &&
                 (selectedColor === '' || selectedColor === interv.alerta), // Filtro com base no projeto selecionado
         )
-    }, [interventions, search, selectedProject, selectedColor])
+    }, [interventions, search, selectedProject, selectedColor, searchTag])
 
     const [viewState, setViewState] = React.useState({
         longitude: -38.31978,
@@ -68,6 +75,8 @@ function Map() {
                             setSelectedProject={setSelectedProject}
                             search={search}
                             setSearch={setSearch}
+                            searchTag={searchTag}
+                            setSearchTag={setSearchTag}
                         />
                     </div>
                     <div className=''>
@@ -79,7 +88,7 @@ function Map() {
                     </div>
                     <div className='absolute right-5 sm:hidden'>
                         <div className='flex flex-rows-2  gap-5'>
-                            <a
+                            {/* <a
                                 href='https://jpnor-my.sharepoint.com/:b:/g/personal/mateus_almeida_kempetro_com_br/ESugvqnLrbRJjWVulXHEjW8B2tJ3AA5CGPcfKA_VJcDDLA?e=5Y38xt'
                                 target='_blank'
                                 className='p-2 font-bold hover:p-3'
@@ -88,8 +97,14 @@ function Map() {
                                     content='HELP!'
                                     className='font-bold p-2 hover:p-3'
                                 ></Badge>
-                            </a>
-                            <CardGeralInformation openSidebar={openSidebar} />
+                            </a> */}
+                            <CardGeralInformation
+                                openSidebar={openSidebar}
+                                openCard={openCard}
+                                setOpenCard={setOpenCard}
+                                setOpenProjects={setOpenProjects}
+                                openProjects={openProjects}
+                            />
                         </div>
                     </div>
                 </div>

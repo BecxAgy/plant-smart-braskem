@@ -80,7 +80,7 @@ function GroupColorFilter({ setSelectedColor, selectedColor, interventions }) {
             </div>
 
             <div className='p-1 ' onClick={() => handleChipClick('')}>
-                <LuFilterX className='w-5 h-5 hover:w-6 hover:h-6' />
+                <LuFilterX className='w-5 h-5 hover:text-blue-600 ' />
             </div>
         </div>
     )

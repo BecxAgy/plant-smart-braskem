@@ -1,21 +1,22 @@
 import { api, requestConfig } from '../utils/config'
 
-const getState = async () => {
+const getProjetos = async () => {
     const config = requestConfig('GET', null)
 
     try {
-        const res = await fetch(api + '/spreadsheet/status', config)
+        debugger
+        const res = await fetch(api + '/spreadsheet/avanco/projeto', config)
             .then(res => res.json())
             .catch(err => err)
 
-        return res.data[0]
+        return res.data
     } catch (error) {
         console.log(error)
     }
 }
 
-const applicationService = {
-    getState,
+const projectService = {
+    getProjetos,
 }
 
-export default applicationService
+export default projectService

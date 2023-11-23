@@ -9,6 +9,8 @@ import GroupColorFilter from './GroupColorFilter'
 import { HiMenuAlt2, HiMenuAlt3 } from 'react-icons/hi'
 import Notification from './Notification'
 import './sidebar.css'
+import SearchArea from './SearchTag'
+import SearchTag from './SearchTag'
 
 export function DefaultSidebar({
     openSidebar,
@@ -22,6 +24,8 @@ export function DefaultSidebar({
     interventionsFiltered,
     search,
     setSearch,
+    searchTag,
+    setSearchTag,
 }) {
     const { interventions } = useSelector(state => state.intervention)
 
@@ -43,7 +47,7 @@ export function DefaultSidebar({
                     className='grid gird-rows h-[96vh] bg-white rounded-2xl p-5'
                     style={{
                         minWidth: '18rem',
-                        maxWidth: '25rem',
+                        maxWidth: '28rem',
                     }}
                 >
                     <div>
@@ -67,11 +71,14 @@ export function DefaultSidebar({
                             interventions={interventionsFiltered}
                         />
 
-                        {/* Adicione classes de responsividade ao SelectProject */}
-                        <div className='w-full md:w-32 my-2'>
+                        <div className='grid grid-cols-2 gap-2 sm:grid-cols-1 marker:mb-3'>
                             <SelectProject
                                 selectedProject={selectedProject}
                                 setSelectedProject={setSelectedProject}
+                            />
+                            <SearchTag
+                                searchTag={searchTag}
+                                setSearchTag={setSearchTag}
                             />
                         </div>
 
@@ -80,9 +87,8 @@ export function DefaultSidebar({
                             value={search}
                             onChange={e => {
                                 setSearch(e.target.value)
-                                console.log(search)
                             }}
-                            className='bg-blue-gray-900 rounded-md shadow '
+                            className='bg-blue-gray-900 rounded-md shadow mt-1'
                             type='search'
                             color='blue'
                             label='Nome do Isométrico'

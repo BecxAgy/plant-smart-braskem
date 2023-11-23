@@ -1,40 +1,102 @@
-import { Tooltip, Typography } from '@material-tailwind/react'
-import { CircularProgress, Divider } from '@mui/joy'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import { Divider } from '@mui/joy'
+import './sidebar.css'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import CardGeralProgress from './dash/CardGeralProgress'
+import CardProjectProgress from './dash/CardProjectProgress'
+import CardAreaProgress from './dash/CardAreaProgress'
+import { useState } from 'react'
 
 function CardGeralInformation({ openSidebar }) {
-    const { status } = useSelector(state => state.status)
-
+    const [openCard, setOpenCard] = useState(true)
+    const [openProjects, setOpenProjects] = useState(false)
+    const [openArea, setOpenArea] = useState(false)
     return (
         <div
-            className={`relative flex flex-col bg-white shadow-lg items-center rounded-xl bg-clip-border  sm:${
-                openSidebar ? 'hidden' : ''
+            className={`relative  flex flex-col  sm:${
+                openSidebar ? 'hidden ' : ''
             }`}
         >
-            <h3 className='font-bold p-3'>Avanço Geral</h3>
-            <Divider />
-            <div className='grid grid-rows-2 justify-center items-center gap-3 p-2'>
-                <Tooltip content='Avanço Atual' placement='left'>
-                    <CircularProgress
-                        size='lg'
-                        determinate
-                        color={status.Cor}
-                        value={status.Avanco_Atual_Geral}
-                    >
-                        <Typography>{status.Avanco_Atual_Geral}%</Typography>
-                    </CircularProgress>
-                </Tooltip>
+            <div className=' bg-white shadow-lg rounded-xl bg-clip-border border-rounded index-progress mb-5'>
+                <div
+                    className={`flex
+                justify-between
+                p-3 ${openCard ? '' : 'gap-3'}`}
+                >
+                    <h1 className='font-bold  text-start'>Avanço Geral</h1>
+                    {openCard ? (
+                        <FaChevronUp
+                            size=''
+                            onClick={() => setOpenCard(!openCard)}
+                        />
+                    ) : (
+                        <FaChevronDown onClick={() => setOpenCard(!openCard)} />
+                    )}
+                </div>
+                <Divider />
+                <CardGeralProgress openCard={openCard} />
+            </div>
+            <div
+                className={` bg-white shadow-lg rounded-xl bg-clip-border border-rounded index-progress mb-5 sm:${
+                    openSidebar ? 'hidden ' : ''
+                }`}
+            >
+                <div
+                    className={`flex
+                justify-between
+                p-3 ${openProjects ? '' : 'gap-3'}`}
+                >
+                    <h1 className='font-bold  text-start'>
+                        Avanço por Projeto
+                    </h1>
+                    {openProjects ? (
+                        <FaChevronUp
+                            onClick={() => {
+                                setOpenProjects(!openProjects)
+                            }}
+                        />
+                    ) : (
+                        <FaChevronDown
+                            onClick={() => {
+                                if (openArea) setOpenArea(false)
 
-                <Tooltip content='Avanço Previsto' placement='bottom'>
-                    <CircularProgress
-                        size='lg'
-                        determinate
-                        value={status.Avanco_Previsto_Geral}
-                    >
-                        <Typography>{status.Avanco_Previsto_Geral}%</Typography>
-                    </CircularProgress>
-                </Tooltip>
+                                setOpenProjects(!openProjects)
+                            }}
+                        />
+                    )}
+                </div>
+                <Divider />
+                <CardProjectProgress openProjects={openProjects} />
+            </div>
+
+            <div
+                className={` bg-white shadow-lg rounded-xl bg-clip-border border-rounded index-progress  sm:${
+                    openSidebar ? 'hidden ' : ''
+                }`}
+            >
+                <div
+                    className={`flex
+                justify-between
+                p-3 ${openArea ? '' : 'gap-3'}`}
+                >
+                    <h1 className='font-bold  text-start'>Avanço por Área</h1>
+                    {openArea ? (
+                        <FaChevronUp
+                            onClick={() => {
+                                setOpenArea(!openArea)
+                            }}
+                        />
+                    ) : (
+                        <FaChevronDown
+                            onClick={() => {
+                                if (openProjects) setOpenProjects(false)
+
+                                setOpenArea(!openArea)
+                            }}
+                        />
+                    )}
+                </div>
+                <Divider />
+                <CardAreaProgress openArea={openArea} />
             </div>
         </div>
     )
