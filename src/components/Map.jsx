@@ -11,8 +11,10 @@ import pointYellow from '../images/Circle_Yellow.png'
 import compassRose from '../images/Logo_Kmp.svg'
 import arrow from '../images/Vetor_Seta.svg'
 import layer from '../images/Layer_Mapa.svg'
-import { Avatar, Badge } from '@material-tailwind/react'
+import { Avatar, Badge, IconButton } from '@material-tailwind/react'
 import CardGeralInformation from './CardGeralInformation'
+import { IoMdHelp } from 'react-icons/io'
+import { FaDatabase } from 'react-icons/fa'
 
 const TOKEN = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX
 
@@ -90,8 +92,8 @@ function Map() {
                     <div className='absolute right-5 sm:hidden'>
                         <div className='flex flex-rows-2  gap-5'>
                             {/* <a
-                                href='https://jpnor-my.sharepoint.com/:b:/g/personal/mateus_almeida_kempetro_com_br/ESugvqnLrbRJjWVulXHEjW8B2tJ3AA5CGPcfKA_VJcDDLA?e=5Y38xt'
-                                target='_blank'
+                                href=''
+                               
                                 className='p-2 font-bold hover:p-3'
                             >
                                 <Badge
@@ -168,9 +170,34 @@ function Map() {
 
                 {/* Show/hide overlay button */}
                 <div className={`absolute p-2 right-5 bottom-2`}>
-                    <Avatar src={compassRose} />
+                    <div className='grid grid-cols-3 gap-4'>
+                        <a
+                            target='_blank'
+                            href='https://jpnor-my.sharepoint.com/:b:/g/personal/mateus_almeida_kempetro_com_br/ESugvqnLrbRJjWVulXHEjW8B2tJ3AA5CGPcfKA_VJcDDLA?e=5Y38xt'
+                        >
+                            <IconButton
+                                size='lg'
+                                className='rounded-full bg-red-500'
+                            >
+                                <IoMdHelp className='h-6 w-6'></IoMdHelp>
+                            </IconButton>
+                        </a>
+                        <a
+                            target='_blank'
+                            href='https://jpnor-my.sharepoint.com/:x:/g/personal/ravan_melo_kempetro_com_br/EVltCJt1qK5DgGYN5BzgRcABO7FmRdIfXcYXf19fqxlEFw?e=8P1Orz'
+                        >
+                            <IconButton
+                                size='lg'
+                                className='rounded-full p-2 bg-blue-500'
+                            >
+                                <FaDatabase className='h-4 w-4'></FaDatabase>
+                            </IconButton>
+                        </a>
 
-                    <p className='text-center text-white italic'>v1.271023</p>
+                        <Avatar src={compassRose} />
+                    </div>
+
+                    <p className='text-end text-white italic'>v1.271023</p>
                 </div>
             </ReactMapGl>
         </div>

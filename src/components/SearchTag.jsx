@@ -5,6 +5,7 @@ import { Input } from '@material-tailwind/react'
 const SearchTag = ({ searchTag, setSearchTag }) => {
     return (
         <Input
+            size='sm'
             value={searchTag}
             onChange={e => {
                 setSearchTag(e.target.value)

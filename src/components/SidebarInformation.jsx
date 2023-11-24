@@ -71,7 +71,7 @@ export function DefaultSidebar({
                             interventions={interventionsFiltered}
                         />
 
-                        <div className='grid grid-cols-2 gap-2 sm:grid-cols-1 marker:mb-3'>
+                        <div className='grid grid-cols-2 gap-2 sm:grid-cols-1 mb-3'>
                             <SelectProject
                                 selectedProject={selectedProject}
                                 setSelectedProject={setSelectedProject}
