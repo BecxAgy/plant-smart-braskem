@@ -1,7 +1,7 @@
 import { List, ListItem, Progress, Typography } from '@material-tailwind/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
-const CardAreaProgress = ({ openArea }) => {
+const CardAreaProgress = ({ openArea, search, setSearch }) => {
     const { areas } = useSelector(state => state.area)
 
     return (
@@ -11,7 +11,10 @@ const CardAreaProgress = ({ openArea }) => {
                     <List>
                         {areas &&
                             areas.map((project, i) => (
-                                <ListItem key={i} className=''>
+                                <ListItem
+                                    key={i}
+                                    onClick={() => setSearch(project.Area)}
+                                >
                                     <div className='flex flex-col gap-1 w-full'>
                                         <Typography className='font-bold text-md'>
                                             {project.Area}

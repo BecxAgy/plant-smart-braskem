@@ -2,7 +2,12 @@ import { List, ListItem, Progress, Typography } from '@material-tailwind/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-const CardProjectProgress = ({ openProjects }) => {
+const CardProjectProgress = ({
+    openProjects,
+    onClick,
+    selectedProject,
+    setSelectedProject,
+}) => {
     const { projects } = useSelector(state => state.project)
     return (
         <div className={`${openProjects ? '' : 'hidden'}`}>
@@ -11,7 +16,13 @@ const CardProjectProgress = ({ openProjects }) => {
                     <List>
                         {projects &&
                             projects.map((project, i) => (
-                                <ListItem key={i} className=''>
+                                <ListItem
+                                    key={i}
+                                    onClick={() => {
+                                        setSelectedProject(project.Projeto)
+                                        console.log(selectedProject.Projeto)
+                                    }}
+                                >
                                     <div className='flex flex-col gap-1 w-full'>
                                         <Typography className='font-bold text-md'>
                                             {project.Projeto}

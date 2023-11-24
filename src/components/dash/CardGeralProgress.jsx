@@ -22,9 +22,14 @@ const CardGeralProgress = ({ openCard }) => {
                         color={status.Cor}
                         value={status.Avanco_Atual_Geral}
                     >
-                        <Typography className='font-bold text-md'>
-                            {status.Avanco_Atual_Geral}%
-                        </Typography>
+                        <div className='grid grid-rows-2'>
+                            <Typography className='font-bold  text-md'>
+                                {status.Avanco_Atual_Geral}%
+                            </Typography>
+                            <Typography className='font-medium text-sm'>
+                                Atual
+                            </Typography>
+                        </div>
                     </CircularProgress>
                 </Tooltip>
 
@@ -38,9 +43,14 @@ const CardGeralProgress = ({ openCard }) => {
                         determinate
                         value={status.Avanco_Previsto_Geral}
                     >
-                        <Typography className='font-bold text-md'>
-                            {status.Avanco_Previsto_Geral}%
-                        </Typography>
+                        <div className='grid grid-rows-2'>
+                            <Typography className='font-bold text-center text-md'>
+                                {status.Avanco_Previsto_Geral}%
+                            </Typography>
+                            <Typography className='font-medium text-center text-sm'>
+                                Previsto
+                            </Typography>
+                        </div>
                     </CircularProgress>
                 </Tooltip>
             </div>

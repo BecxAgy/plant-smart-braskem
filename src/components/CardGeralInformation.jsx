@@ -6,7 +6,13 @@ import CardProjectProgress from './dash/CardProjectProgress'
 import CardAreaProgress from './dash/CardAreaProgress'
 import { useState } from 'react'
 
-function CardGeralInformation({ openSidebar }) {
+function CardGeralInformation({
+    openSidebar,
+    selectedProject,
+    setSelectedProject,
+    search,
+    setSearch,
+}) {
     const [openCard, setOpenCard] = useState(true)
     const [openProjects, setOpenProjects] = useState(false)
     const [openArea, setOpenArea] = useState(false)
@@ -65,7 +71,12 @@ function CardGeralInformation({ openSidebar }) {
                     )}
                 </div>
                 <Divider />
-                <CardProjectProgress openProjects={openProjects} />
+                <CardProjectProgress
+                    onClick={() => {}}
+                    openProjects={openProjects}
+                    selectedProject={selectedProject}
+                    setSelectedProject={setSelectedProject}
+                />
             </div>
 
             <div
@@ -96,7 +107,11 @@ function CardGeralInformation({ openSidebar }) {
                     )}
                 </div>
                 <Divider />
-                <CardAreaProgress openArea={openArea} />
+                <CardAreaProgress
+                    search={search}
+                    setSearch={setSearch}
+                    openArea={openArea}
+                />
             </div>
         </div>
     )

@@ -1,7 +1,9 @@
 import React from 'react'
 import { HiExclamation, HiInformationCircle } from 'react-icons/hi'
+import { useSelector } from 'react-redux'
 
 function Notification() {
+    const { status } = useSelector(state => state.status)
     return (
         <div class='max-w-2xl mx-auto mt-2'>
             <div
@@ -14,7 +16,7 @@ function Notification() {
                 </div>
                 <div class='ml-3 text-sm font-normal'>
                     Apenas isométricos emitidos pela Kempetro, com{' '}
-                    <strong>atualização diária às 10h</strong>
+                    <strong>última atualização em {status.Atualizacao}</strong>
                 </div>
             </div>
         </div>

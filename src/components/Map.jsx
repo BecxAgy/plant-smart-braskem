@@ -50,6 +50,7 @@ function Map() {
         zoom: 16.3,
     })
     const handleOpen = () => setOpen(!open)
+    const switchSelectedProject = () => setSelectedProject()
 
     return (
         <div className='relative '>
@@ -99,6 +100,10 @@ function Map() {
                                 ></Badge>
                             </a> */}
                             <CardGeralInformation
+                                search={search}
+                                setSearch={setSearch}
+                                selectedProject={selectedProject}
+                                setSelectedProject={setSelectedProject}
                                 openSidebar={openSidebar}
                                 openCard={openCard}
                                 setOpenCard={setOpenCard}

@@ -86,13 +86,15 @@ function DialogDefault({ setopen, open, intervention }) {
                     <Typography
                         variant='h6'
                         color='blue-gray'
-                        className='font-medium'
+                        className='font-medium '
                     >
                         {PJ}
                     </Typography>
                 </div>
                 <React.Fragment>
-                    <Typography>Tag Principal</Typography>
+                    <Typography className='font-bold text-center text-sm'>
+                        Tags Relacionadas
+                    </Typography>
                     {emperesa_montagem &&
                         (emperesa_montagem.includes(';') ? (
                             emperesa_montagem.split(';').map((item, index) => (
