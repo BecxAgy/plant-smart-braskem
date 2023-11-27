@@ -63,8 +63,8 @@ function DialogDefault({ setopen, open, intervention }) {
 
     return (
         <Card
-            className={`w-full  shadow-lg ${!open ? 'hidden' : ''}`}
-            style={{ maxWidth: '18rem', maxHeight: '90vh', zIndex: 99 }}
+            className={`w-full shadow-lg ${!open ? 'hidden' : ''}`}
+            style={{ maxWidth: '18rem', zIndex: 99 }}
         >
             <IconButton
                 onClick={handleClose}
@@ -74,7 +74,7 @@ function DialogDefault({ setopen, open, intervention }) {
                 <FaRegTimesCircle className='w-5 h-5' />
             </IconButton>
 
-            <CardBody>
+            <CardBody className=''>
                 <div className=' grid grid-rows-2 items-center justify-between'>
                     <Typography
                         variant='h4'
@@ -95,80 +95,85 @@ function DialogDefault({ setopen, open, intervention }) {
                     <Typography className='font-bold text-center text-sm'>
                         Tags Relacionadas
                     </Typography>
-                    {emperesa_montagem &&
-                        (emperesa_montagem.includes(';') ? (
-                            emperesa_montagem.split(';').map((item, index) => (
+                    <div className='h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-transparent p-1'>
+                        {emperesa_montagem &&
+                            (emperesa_montagem.includes(';') ? (
+                                emperesa_montagem
+                                    .split(';')
+                                    .map((item, index) => (
+                                        <Chip
+                                            key={index}
+                                            className='p-2 text-center my-2'
+                                            variant='ghost'
+                                            value={item.trim()} // Use trim() para remover espaços em branco extras
+                                        />
+                                    ))
+                            ) : (
                                 <Chip
-                                    key={index}
-                                    className='p-2 text-center my-2'
+                                    className='p-2 text-center'
                                     variant='ghost'
-                                    value={item.trim()} // Use trim() para remover espaços em branco extras
+                                    value={emperesa_montagem.trim()} // Use trim() para remover espaços em branco extras
                                 />
-                            ))
-                        ) : (
-                            <Chip
-                                className='p-2 text-center'
-                                variant='ghost'
-                                value={emperesa_montagem.trim()} // Use trim() para remover espaços em branco extras
-                            />
-                        ))}
+                            ))}
+                    </div>
                 </React.Fragment>
+                <div className='  '>
+                    <div className='grid grid-cols-2 gap-3 my-3'>
+                        <Typography color='gray' variant='small'>
+                            <span className='font-bold'>Início Real</span>{' '}
+                            {inicio_real}
+                        </Typography>
 
-                <div className='grid grid-cols-2 gap-3 my-3'>
-                    <Typography color='gray' variant='small'>
-                        <span className='font-bold'>Início Real</span>{' '}
-                        {inicio_real}
-                    </Typography>
+                        <Typography color='gray' variant='small'>
+                            <span className='font-bold'>Início Previsto</span>{' '}
+                            {data_prev_inicio}
+                        </Typography>
 
-                    <Typography color='gray' variant='small'>
-                        <span className='font-bold'>Início Previsto</span>{' '}
-                        {data_prev_inicio}
-                    </Typography>
+                        <Typography color='gray' variant='small'>
+                            <span className='font-bold'>Final Real</span>{' '}
+                            {termino_real}
+                        </Typography>
 
-                    <Typography color='gray' variant='small'>
-                        <span className='font-bold'>Final Real</span>{' '}
-                        {termino_real}
-                    </Typography>
+                        <Typography color='gray' variant='small'>
+                            <span className='font-bold'>Final Prev</span>{' '}
+                            {data_prev_termino}
+                        </Typography>
+                    </div>
 
-                    <Typography color='gray' variant='small'>
-                        <span className='font-bold'>Final Prev</span>{' '}
-                        {data_prev_termino}
-                    </Typography>
-                </div>
-
-                <div className='grid grid-rows-3 gap-3'>
-                    <ProgressTooltip
-                        value={avanco_atual}
-                        color={alerta}
-                        content='Avanço Atual'
-                    />
-                    <ProgressTooltip
-                        value={avanco_previsto}
-                        content='Avanço Previsto'
-                    />
-                </div>
-
-                <div className='group mt-8 inline-flex flex-wrap items-center gap-3'>
-                    <IconButtonWithTooltip
-                        onClick={() => handlePdfDownload(link_iso)}
-                        tooltipContent='Link Isométrico'
-                        icon={<FaDownload className='h-5 w-5' />}
-                    />
-                    <IconButtonWithTooltip
-                        tooltipContent='Alerta'
-                        icon={
-                            <AiTwotoneAlert
-                                className='h-5 w-5'
-                                color={alerta}
-                            />
-                        }
-                    />
-                    <a href={responsavel} target='_blank'>
-                        <IconButtonWithTooltip
-                            tooltipContent='3D'
-                            icon={<FaCube className='h-5 w-5' />}
+                    <div className='grid grid-rows-3 gap-3'>
+                        <ProgressTooltip
+                            value={avanco_atual}
+                            color={alerta}
+                            content='Avanço Atual'
                         />
-                    </a>
+                        <ProgressTooltip
+                            value={avanco_previsto}
+                            content='Avanço Previsto'
+                        />
+                    </div>
+
+                    <div className='group mt-2 inline-flex flex-wrap items-center gap-3'>
+                        <IconButtonWithTooltip
+                            onClick={() => handlePdfDownload(link_iso)}
+                            tooltipContent='Link Isométrico'
+                            icon={<FaDownload className='h-5 w-5' />}
+                        />
+                        <IconButtonWithTooltip
+                            tooltipContent='Alerta'
+                            icon={
+                                <AiTwotoneAlert
+                                    className='h-5 w-5'
+                                    color={alerta}
+                                />
+                            }
+                        />
+                        <a href={responsavel} target='_blank'>
+                            <IconButtonWithTooltip
+                                tooltipContent='3D'
+                                icon={<FaCube className='h-5 w-5' />}
+                            />
+                        </a>
+                    </div>
                 </div>
             </CardBody>
         </Card>
